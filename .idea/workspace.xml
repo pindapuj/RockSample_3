@@ -1,145 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a691e05e-ea80-4e28-9667-c2abeba2f804" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/burlap_3_0_2_SNAPSHOT_jar_with_dependencies.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/AMDPAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/AMDPLearningAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/AMDPModelLearner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/AMDPPolicyGenerator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/GroundedPropSC.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/GroundedTask.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/NonPrimitiveTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/PrimitiveTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/amdpframework/TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/CleanupDomain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/CleanupModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/CleanupVisualiser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/FixedDoorCleanupEnv.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/PullCostGoalRF.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/state/CleanupAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/state/CleanupBlock.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/state/CleanupDoor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/state/CleanupRoom.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanup/state/CleanupState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupamdp/CleanupBaseLevelTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupamdp/CleanupDriver.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupamdp/L0TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupamdp/L1TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupamdp/L2TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupamdp/RootTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/CleanupL1Domain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/CleanupL1Model.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/state/CleanupAgentL1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/state/CleanupBlockL1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/state/CleanupDoorL1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/state/CleanupL1State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/state/CleanupL1StateMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel1/state/CleanupRoomL1.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel2/CleanupL2Domain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel2/CleanupL2Model.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel2/state/CleanupAgentL2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel2/state/CleanupBlockL2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel2/state/CleanupL2State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel2/state/CleanupL2StateMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanuplevel2/state/CleanupRoomL2.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupmaxq/CleanupL0TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupmaxq/CleanupL1TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupmaxq/CleanupL2TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupmaxq/CleanupMaxQRunner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupamdpdomains/cleanupmaxq/RootTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/CleanupTurtleBotAMDPRunner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/ContinuousTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/L0TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/L1TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/L2TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/CleanupContinuousDomain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/CleanupContinuousModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/CleanupContinuousVisualiser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/state/CleanupContinuousAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/state/CleanupContinuousBlock.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/state/CleanupContinuousDoor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/state/CleanupContinuousRoom.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupcontinuous/state/CleanupContinuousState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/AMDPAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/CleanupTurtleBotL0Domain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/CleanupTurtleBotModel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/state/CleanupAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/state/CleanupBlock.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/state/CleanupContinuousToDiscreteStateMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/state/CleanupDoor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/state/CleanupRoom.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/cleanupturtlebot/cleanupl0discrete/state/CleanupState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/learning/RMaxTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/CValuesStore.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/GroundedTask.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/MAX0FasterLearningAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/MAX0LearningAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/MAXQCleanupTesting.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/MAXQLearningAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/MAXQStateAbstractionAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/MaxQForTesting.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/NonPrimitiveTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/PrimitiveTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/QProviderForMAXQ.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/framework/TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/DropTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/GetTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/NavigateTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/PickupTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/PutTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/RewardDecompositionForTaxi.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/RootTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/TaxiMAXQL0CardinalMoveTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/TaxiMaxQRunner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/TaxiMaxQTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/maxq/taximaxq/TaxiTerminationFunction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/QLearningTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/TaxiDomain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/TaxiRewardFunction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/TaxiTerminationFunction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/TaxiToLocationTerminationFunction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/TaxiVisualizer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/VITutorial.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/state/TaxiAgent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/state/TaxiLocation.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/state/TaxiMapWall.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/state/TaxiPassenger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxi/state/TaxiState.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/GetTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/MoveTaskNodes.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/NavigateTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/PickupL0TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/PickupL1TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/PutDownL0TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/PutDownL1TaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/PutTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/RootTaskNode.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/TaxiAMDPDriver.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/TaxiAMDPLearner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/TaxiBaseLearner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdp/TaxiBasePlanner.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel1/TaxiL1Domain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel1/TaxiL1TerminalFunction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel1/taxil1state/L1StateMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel1/taxil1state/TaxiL1Agent.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel1/taxil1state/TaxiL1Location.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel1/taxil1state/TaxiL1Passenger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel1/taxil1state/TaxiL1State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel2/TaxiL2Domain.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel2/TaxiL2TerminalFunction.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel2/taxil2state/L2StateMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel2/taxil2state/TaxiL2Location.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel2/taxil2state/TaxiL2Passenger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/taxiamdplevel2/taxil2state/TaxiL2State.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/testingtools/BoundedRTDPForTests.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/testingtools/GreedyReplan.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/taxiamdpdomains/testingtools/MutableGlobalInteger.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/tools/StackObserver.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/tools/VisualEnvStackObserver.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/utilities/BoltzmannQPolicyWithCoolingSchedule.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/amdp/utilities/QLearningForMaxQ.java" afterPath="" />
-    </list>
+    <list default="true" id="a691e05e-ea80-4e28-9667-c2abeba2f804" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -172,10 +34,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="8" />
-    <option name="y" value="40" />
-    <option name="width" value="1256" />
-    <option name="height" value="737" />
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="777" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -425,7 +286,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
