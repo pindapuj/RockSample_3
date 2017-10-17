@@ -93,7 +93,6 @@ public class TaxiBasePlanner {
 
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
 
 
         OOSADomain td = tdGen.generateDomain();
@@ -105,19 +104,19 @@ public class TaxiBasePlanner {
 
         if(randomStart){
             if(singlePassenger){
-                startState = TaxiDomain.getRandomClassicState(rand, td, false);
+                startState = TaxiDomain.getRandomClassicState(rand, td);
             }
             else{
-                startState = TaxiDomain.getComplexState(false);
+                startState = TaxiDomain.getComplexState();
             }
 
         }
         else{
             if(singlePassenger) {
-                startState = TaxiDomain.getClassicState(td, false);
+                startState = TaxiDomain.getClassicState(td);
             }
             else{
-                startState = TaxiDomain.getComplexState(false);
+                startState = TaxiDomain.getComplexState();
             }
         }
 

@@ -189,10 +189,6 @@ public class TaxiState implements MutableOOState{
                 int iv = StateUtilities.stringOrNumber(value).intValue();
                 touchTaxi().y = iv;
             }
-            else if(key.obVarKey.equals(VAR_FUEL)){
-                int iv = StateUtilities.stringOrNumber(value).intValue();
-                touchTaxi().fuel = iv;
-            }
             else if(key.obVarKey.equals(VAR_OCCUPIEDTAXI)){
                 boolean vBool = StateUtilities.stringOrBoolean(value).booleanValue();
                 touchTaxi().taxiOccupied=vBool;

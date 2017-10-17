@@ -21,19 +21,17 @@ public class TaxiAgent implements ObjectInstance{
     public int x;
     public int y;
     public boolean taxiOccupied;
-    public int fuel = 0;
 
     protected String name;
 
-    private final static List<Object> keys = Arrays.<Object>asList(VAR_X, VAR_Y, VAR_FUEL, VAR_OCCUPIEDTAXI);
+    private final static List<Object> keys = Arrays.<Object>asList(VAR_X, VAR_Y, VAR_OCCUPIEDTAXI);
 
 
-    public TaxiAgent(String name, int x, int y, boolean taxiOccupied, int fuel) {
+    public TaxiAgent(String name, int x, int y, boolean taxiOccupied) {
         this.name = name;
         this.x =x;
         this.y = y;
         this.taxiOccupied =taxiOccupied;
-        this.fuel = fuel;
     }
 
 
@@ -83,16 +81,13 @@ public class TaxiAgent implements ObjectInstance{
         else if(key.equals(VAR_OCCUPIEDTAXI)){
             return taxiOccupied;
         }
-        else if(key.equals(VAR_FUEL)){
-            return fuel;
-        }
 
         throw new RuntimeException("Unknown key for TaxiAgent: " + key);
     }
 
     @Override
     public TaxiAgent copy() {
-        return new TaxiAgent(name, x,y,taxiOccupied,fuel);
+        return new TaxiAgent(name, x,y,taxiOccupied);
     }
 
     @Override
@@ -107,7 +102,7 @@ public class TaxiAgent implements ObjectInstance{
         }
         if (object instanceof TaxiAgent) {
             TaxiAgent taxiObject = (TaxiAgent) object;
-            if((this.taxiOccupied==taxiObject.taxiOccupied && this.fuel==taxiObject.fuel && this.x==taxiObject.x && this.y==taxiObject.y && this.name.equals(taxiObject.name))){
+            if((this.taxiOccupied==taxiObject.taxiOccupied && this.x==taxiObject.x && this.y==taxiObject.y && this.name.equals(taxiObject.name))){
                 return true;
             }
         }

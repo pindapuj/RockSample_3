@@ -477,13 +477,12 @@ public class TaxiL1Domain implements DomainGenerator {
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
 
 
         OOSADomain td = tdGen.generateDomain();
 
 
-        State startState = TaxiDomain.getRandomClassicState(rand, td, false);
+        State startState = TaxiDomain.getRandomClassicState(rand, td);
 
 //        State startState = TaxiDomain.getClassicState(td, false);
 

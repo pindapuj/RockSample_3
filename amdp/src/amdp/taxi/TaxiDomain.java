@@ -59,7 +59,7 @@ public class TaxiDomain implements DomainGenerator{
 
     public static final String								VAR_X = "xAtt";
     public static final String								VAR_Y = "yAtt";
-    public static final String								VAR_FUEL = "fuelAtt";
+
     public static final String			                    VAR_INTAXI = "inTaxiAtt";
     public static final String								VAR_OCCUPIEDTAXI = "occupiedTaxiAtt";
     public static final String								VAR_WALLMIN = "wallMinAtt";
@@ -91,7 +91,6 @@ public class TaxiDomain implements DomainGenerator{
     public static final String								ACTION_WEST = "west";
     public static final String								ACTION_PICKUP = "pickup";
     public static final String								ACTION_DROPOFF = "dropoff";
-    public static final String								ACTION_FILLUP = "fillup";
 
 
     public static final String								TAXIATLOCATIONPF = "taxiAt";
@@ -105,13 +104,10 @@ public class TaxiDomain implements DomainGenerator{
     public static final String								PASSENGERPICKUPPF = "passengerPickUpPF";
     public static final String								PASSENGERPUTDOWNPF = "passengerPutDownPF";
 
-    public static final String                              FUELLOCATION = "fuel";
-
 
 
     public static int												maxX = 5;
     public static int												maxY = 5;
-    public static int												maxFuel = 12;
 
 
     public static final String                              RED = "red";
@@ -125,7 +121,6 @@ public class TaxiDomain implements DomainGenerator{
     public static final String                              PINK = "pink";
     public static final String                              ORANGE = "orange";
     public static final String                              CYAN = "cyan";
-    public static final String                              FUEL = "fuel";
 
 
     /**
@@ -140,7 +135,6 @@ public class TaxiDomain implements DomainGenerator{
     protected double[][]								moveTransitionDynamics;
     protected double[][]								fickleLocationDynamics;
 
-    public boolean											includeFuel = true;
     public boolean                                          fickleTaxi = false;
     public double                                           fickleProbability = 0.3;
 
@@ -188,13 +182,6 @@ public class TaxiDomain implements DomainGenerator{
         this.fickleTaxi = fickleTaxi;
     }
 
-    public boolean isIncludeFuel() {
-        return includeFuel;
-    }
-
-    public void setIncludeFuel(boolean includeFuel) {
-        this.includeFuel = includeFuel;
-    }
 
     public RandomFactory getRandomFactory() {
         return randomFactory;
@@ -310,36 +297,25 @@ public class TaxiDomain implements DomainGenerator{
 
         if(fickleTaxi){
             TaxiModel smodel = new TaxiModel(rand, moveTransitionDynamics,
-                    fickleLocationDynamics, fickleTaxi, fickleProbability, includeFuel );
+                    fickleLocationDynamics, fickleTaxi, fickleProbability); // false used to be include fuel
             FactoredModel model = new FactoredModel(smodel, rf, tf);
             domain.setModel(model);
         }
         else{
-            TaxiModel smodel = new TaxiModel(rand, moveTransitionDynamics, includeFuel );
+            TaxiModel smodel = new TaxiModel(rand, moveTransitionDynamics); // false used to be includefuel
             FactoredModel model = new FactoredModel(smodel, rf, tf);
             domain.setModel(model);
         }
 
 
-        if(includeFuel){
-            domain.addActionTypes(
-                    new UniversalActionType(ACTION_NORTH),
-                    new UniversalActionType(ACTION_SOUTH),
-                    new UniversalActionType(ACTION_EAST),
-                    new UniversalActionType(ACTION_WEST),
-                    new UniversalActionType(ACTION_DROPOFF),
-                    new UniversalActionType(ACTION_FILLUP),
-                    new UniversalActionType(ACTION_PICKUP));
-        }
-        else{
-            domain.addActionTypes(
+
+        domain.addActionTypes(
                     new UniversalActionType(ACTION_NORTH),
                     new UniversalActionType(ACTION_SOUTH),
                     new UniversalActionType(ACTION_EAST),
                     new UniversalActionType(ACTION_WEST),
                     new UniversalActionType(ACTION_DROPOFF),
                     new UniversalActionType(ACTION_PICKUP));
-        }
 
         OODomain.Helper.addPfsToDomain(domain, this.generatePfs(domain));
 
@@ -365,17 +341,15 @@ public class TaxiDomain implements DomainGenerator{
         protected double[][] locationTransitionDynamics;
         protected boolean fickleTaxi;
         protected double fickleProbability = 0.;
-        protected boolean includeFuel;
 
-        public TaxiModel(Random rand, double[][] movementTransitionDynamics, boolean includeFuel) {
+        public TaxiModel(Random rand, double[][] movementTransitionDynamics) {
             this.rand = rand;
             this.movementTransitionDynamics = movementTransitionDynamics;
             this.fickleTaxi = false;
-            this.includeFuel = includeFuel;
         }
 
         public TaxiModel(Random rand, double[][] movementTransitionDynamics, double[][] locationTransitionDynamics,
-                         boolean fickleTaxi, double fickleProbability, boolean includeFuel) {
+                         boolean fickleTaxi, double fickleProbability) {
             this.rand = rand;
             this.movementTransitionDynamics = movementTransitionDynamics;
             this.fickleTaxi = fickleTaxi;
@@ -383,7 +357,6 @@ public class TaxiDomain implements DomainGenerator{
             if(fickleTaxi && locationTransitionDynamics==null){
                 throw new RuntimeException("transition dynamics for switching locations are null but the passenger is fickle.");
             }
-            this.includeFuel = includeFuel;
             this.locationTransitionDynamics = locationTransitionDynamics;
         }
 
@@ -541,34 +514,6 @@ public class TaxiDomain implements DomainGenerator{
                 }
                 transitions.add(new StateTransitionProb(ns, 1.0));
                 return transitions;
-
-            }
-
-            if(actionInd==6){
-                // fillup
-                if(!includeFuel){
-                    transitions.add(new StateTransitionProb(s,1.));
-                    return transitions;
-                }
-                TaxiState ns = (TaxiState)s.copy();
-                TaxiAgent taxi = (TaxiAgent)((TaxiState)s).objectsOfClass(TAXICLASS).get(0);
-                int tx = taxi.x;
-                int ty = taxi.y;
-
-                List<ObjectInstance> locations = ((TaxiState)s).objectsOfClass(LOCATIONCLASS);
-                for(ObjectInstance l : locations){
-                    if(((TaxiLocation)l).colour.equals(FUELLOCATION)){
-                        int lx = ((TaxiLocation)l).x;
-                        int ly = ((TaxiLocation)l).y;
-                        if(tx == lx && ty == ly){
-                            TaxiAgent ntaxi = ns.touchTaxi();
-                            ntaxi.fuel = maxFuel;
-                        }
-                    }
-                }
-                transitions.add(new StateTransitionProb(ns,1.0));
-                return transitions;
-
             }
 
             return transitions;
@@ -618,23 +563,6 @@ public class TaxiDomain implements DomainGenerator{
 
             //using fuel?
             TaxiAgent taxi = ts.touchTaxi();
-            if(includeFuel){
-                int fuel = taxi.fuel;
-                if(fuel == 0){
-                    //no movement possible
-                    return ts;
-                }
-                taxi.fuel-=1;
-            }
-
-            //hit wall, so do not change position
-//        if(nx < 0 || nx >= map.length || ny < 0 || ny >= map[0].length || map[nx][ny] == 1 ||
-//                (dx > 0 && (map[ax][ay] == 3 || map[ax][ay] == 4)) || (dx < 0 && (map[nx][ny] == 3 || map[nx][ny] == 4)) ||
-//                (dy > 0 && (map[ax][ay] == 2 || map[ax][ay] == 4)) || (dy < 0 && (map[nx][ny] == 2 || map[nx][ny] == 4)) ){
-//            nx = ax;
-//            ny = ay;
-//        }
-
 
 
             //check for all wall boundings
@@ -894,9 +822,6 @@ public class TaxiDomain implements DomainGenerator{
         else if(name.equals(ACTION_DROPOFF)){
             return 5;
         }
-        else if(name.equals(ACTION_FILLUP)){
-            return 6;
-        }
         throw new RuntimeException("Unknown action " + name);
     }
 
@@ -944,7 +869,7 @@ public class TaxiDomain implements DomainGenerator{
 
 
 
-    public static State getClassicState(Domain domain, boolean usesFuel){
+    public static State getClassicState(Domain domain){
 
         TaxiAgent taxiAgent = new TaxiAgent(TAXICLASS+0,0,3);
 
@@ -958,10 +883,6 @@ public class TaxiDomain implements DomainGenerator{
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
 
-        if(usesFuel){
-            TaxiLocation lFuel = new TaxiLocation(2,1,LOCATIONCLASS+4,FUEL);
-            taxiLocations.add(lFuel);
-        }
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
@@ -997,7 +918,7 @@ public class TaxiDomain implements DomainGenerator{
 
     }
 
-    public static State getComplexState(boolean usesFuel){
+    public static State getComplexState(){
         //TODO: create a random start state with passengers at different locations
 
         TaxiAgent taxiAgent = new TaxiAgent(TAXICLASS+0,0,3);
@@ -1013,10 +934,6 @@ public class TaxiDomain implements DomainGenerator{
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
 
-        if(usesFuel){
-            TaxiLocation lFuel = new TaxiLocation(2,1,LOCATIONCLASS+4,FUEL);
-            taxiLocations.add(lFuel);
-        }
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
@@ -1056,7 +973,7 @@ public class TaxiDomain implements DomainGenerator{
 
     }
 
-    public static State getRandomClassicState(Random rand, Domain domain, boolean usesFuel){
+    public static State getRandomClassicState(Random rand, Domain domain){
 
         TaxiAgent taxiAgent = new TaxiAgent(TAXICLASS+0, rand.nextInt(maxX),rand.nextInt(maxY));
 
@@ -1069,10 +986,7 @@ public class TaxiDomain implements DomainGenerator{
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
 
-        if(usesFuel){
-            TaxiLocation lFuel = new TaxiLocation(2,1,LOCATIONCLASS+4,FUEL);
-            taxiLocations.add(lFuel);
-        }
+
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
@@ -1113,7 +1027,7 @@ public class TaxiDomain implements DomainGenerator{
 
     }
 
-    public static State getStartStateFromTaxiPosition(int TaxiX, int TaxiY, Random rand, Domain domain, boolean usesFuel){
+    public static State getStartStateFromTaxiPosition(int TaxiX, int TaxiY, Random rand, Domain domain){
 
         TaxiAgent taxiAgent = new TaxiAgent(TAXICLASS+0, TaxiX, TaxiY);
 
@@ -1126,10 +1040,6 @@ public class TaxiDomain implements DomainGenerator{
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
 
-        if(usesFuel){
-            TaxiLocation lFuel = new TaxiLocation(2,1,LOCATIONCLASS+4,FUEL);
-            taxiLocations.add(lFuel);
-        }
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
@@ -1193,7 +1103,6 @@ public class TaxiDomain implements DomainGenerator{
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
 
 
         OOSADomain td = tdGen.generateDomain();
@@ -1212,7 +1121,7 @@ public class TaxiDomain implements DomainGenerator{
 //        BoundedRTDP planner = new BoundedRTDP(td, discount ,shf,
 //                new ConstantValueFunction(0.), new ConstantValueFunction(1.),0.1,-1);
 
-        State startState1 = TaxiDomain.getRandomClassicState(rand, td, false);
+        State startState1 = TaxiDomain.getRandomClassicState(rand, td);
         Policy policy = planner.planFromState(startState1);
         Episode episode = PolicyUtils.rollout(policy, startState1, td.getModel());
 
@@ -1221,7 +1130,7 @@ public class TaxiDomain implements DomainGenerator{
 
 
         if(false) {
-            State s = TaxiDomain.getRandomClassicState(rand, td, false);
+            State s = TaxiDomain.getRandomClassicState(rand, td);
             BoundedRTDP brtdp = new BoundedRTDP(td, discount, shf,
                     new ConstantValueFunction(0.),
                     new ConstantValueFunction(1.),
@@ -1282,7 +1191,7 @@ public class TaxiDomain implements DomainGenerator{
                 for(int starty = 0;starty<maxY;starty++){
 //            int startx =0;
 //            int starty =0;
-                    State startState = getStartStateFromTaxiPosition(startx,starty, rand, td, false);
+                    State startState = getStartStateFromTaxiPosition(startx,starty, rand, td);
 //            State startStateClassic = getClassicState(td, false);
 //            ObjectInstance location = ((TaxiState)startState).locations.get(3);
 //            System.out.println(((TaxiLocation)location).colour);
@@ -1326,10 +1235,10 @@ public class TaxiDomain implements DomainGenerator{
 
             int count2=0;
             double sum2 =0.;
-            State exampleStartState = getStartStateFromTaxiPosition(0,0, rand, td, false);
+            State exampleStartState = getStartStateFromTaxiPosition(0,0, rand, td);
             for(ObjectInstance locationStart:((TaxiState)exampleStartState).locations ){
 
-                State startState = getStartStateFromTaxiPosition(((TaxiLocation)locationStart).x,((TaxiLocation)locationStart).y, rand, td, false);
+                State startState = getStartStateFromTaxiPosition(((TaxiLocation)locationStart).x,((TaxiLocation)locationStart).y, rand, td);
 //            ObjectInstance location = ((TaxiState)startState).locations.get(3);
 //            System.out.println(((TaxiLocation)location).colour);
                 for(ObjectInstance endLocation:((TaxiState)startState).locations ){
@@ -1391,7 +1300,7 @@ public class TaxiDomain implements DomainGenerator{
 
 
             for (int i = 0; i < numberOfTests; i++) {
-                State s = TaxiDomain.getRandomClassicState(rand, td, false);
+                State s = TaxiDomain.getRandomClassicState(rand, td);
 //                SimulatedEnvironment env = new SimulatedEnvironment(td, s);
                 List<Episode> episodesQ = new ArrayList<Episode>();
 //                QLearning q = new QLearning(td, 0.95, new SimpleHashableStateFactory(), 0.123, 0.35);
@@ -1405,7 +1314,7 @@ public class TaxiDomain implements DomainGenerator{
                 for (int j = 1; j <= numberOfLearningEpisodes; j++) {
                     System.out.println("test: " +i+", "+ "learning episode: " + j);
                     System.out.println("-------------------------------------------------------------");
-                    State sNew = TaxiDomain.getRandomClassicState(rand, td, false);
+                    State sNew = TaxiDomain.getRandomClassicState(rand, td);
                     SimulatedEnvironment envN = new SimulatedEnvironment(td, sNew);
                     Episode ea = q.runLearningEpisode(envN);
                     episodesQ.add(ea);

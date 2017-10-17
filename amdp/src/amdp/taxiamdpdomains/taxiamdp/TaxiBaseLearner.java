@@ -23,9 +23,6 @@ import java.util.List;
 import java.util.Random;
 
 
-/**
- * Created by ngopalan on 3/3/17.
- */
 public class TaxiBaseLearner {
     public static void main(String[] args) {
 
@@ -46,14 +43,14 @@ public class TaxiBaseLearner {
 
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
+
 
         OOSADomain td = tdGen.generateDomain();
 
 
         //setup initial state
 //    State s = new GridWorldState(new GridAgent(0, 0), new GridLocation(10, 10, "loc0"));
-        State s = TaxiDomain.getRandomClassicState(rand, td, false);
+        State s = TaxiDomain.getRandomClassicState(rand, td);
 
         //create visualizer and explorer
 

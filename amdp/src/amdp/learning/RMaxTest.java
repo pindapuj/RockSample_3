@@ -53,7 +53,6 @@ public class RMaxTest {
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
 
         SADomain domain = tdGen.generateDomain();
 //        SADomain domain = gw.generateDomain(); //generate the grid world domain
@@ -61,7 +60,7 @@ public class RMaxTest {
         //setup initial state
 //    State s = new GridWorldState(new GridAgent(0, 0), new GridLocation(10, 10, "loc0"));
 //        State s = new GridWorldState(new GridAgent(0, 0));
-        State s = TaxiDomain.getRandomClassicState(randomFactory.getMapped(0), domain, false);
+        State s = TaxiDomain.getRandomClassicState(randomFactory.getMapped(0), domain);
 
         //create visualizer and explorer
 //        Visualizer v = GridWorldVisualizer.getVisualizer(gw.getMap());

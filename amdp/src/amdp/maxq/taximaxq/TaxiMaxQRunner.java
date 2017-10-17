@@ -64,11 +64,10 @@ public class TaxiMaxQRunner {
         TDGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
         TDGen.setFickleTaxi(true);
-        TDGen.setIncludeFuel(false);
 //        TDGen.includeFuel = false;
         final OOSADomain d = TDGen.generateDomain();
 
-        State s = TaxiDomain.getRandomClassicState(rand, d, false);
+        State s = TaxiDomain.getRandomClassicState(rand, d);
 
 
 
@@ -188,7 +187,7 @@ public class TaxiMaxQRunner {
 
                     System.out.println("MAXQ learning episode: " + j);
                     System.out.println("-------------------------------------------------------------");
-                    State sNew = TaxiDomain.getRandomClassicState(rand, d, false);
+                    State sNew = TaxiDomain.getRandomClassicState(rand, d);
                     SimulatedEnvironment envN = new SimulatedEnvironment(d, sNew);
 
                     Episode ea = maxqLearningAgent.runLearningEpisode(envN,5000);
@@ -200,7 +199,7 @@ public class TaxiMaxQRunner {
                         maxqLearningAgent.setFreezeLearning(true);
                         System.out.println("MAXQ test episode: " + j / takeModOf);
                         System.out.println("-------------------------------------------------------------");
-                        State sNew1 = TaxiDomain.getRandomClassicState(rand, d, false);
+                        State sNew1 = TaxiDomain.getRandomClassicState(rand, d);
                         SimulatedEnvironment envN1 = new SimulatedEnvironment(d, sNew1);
                         Episode ea1 = maxqLearningAgent.runLearningEpisode(envN1, 1000);
 //                    episodesMAXQ.add(ea1);
@@ -388,7 +387,7 @@ public class TaxiMaxQRunner {
                 for (int j = 1; j <= numberOfLearningEpisodes; j++) {
                     System.out.println("QL test: " +i+", "+ "QL learning episode: " + j);
                     System.out.println("-------------------------------------------------------------");
-                    State sNew = TaxiDomain.getRandomClassicState(rand, d, false);
+                    State sNew = TaxiDomain.getRandomClassicState(rand, d);
                     SimulatedEnvironment envN = new SimulatedEnvironment(d, sNew);
                     Episode ea = q.runLearningEpisode(envN);
                     episodesQ.add(ea);

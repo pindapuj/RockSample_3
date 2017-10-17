@@ -84,17 +84,16 @@ public class TaxiMaxQTest {
         TDGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
         TDGen.setFickleTaxi(true);
-        TDGen.setIncludeFuel(false);
-//        TDGen.includeFuel = false;
+
         final OOSADomain d = TDGen.generateDomain();
 
         State s;
         if(singlePassenger){
             //sNew = TaxiDomain.getRandomClassicState(rand, d, false);
-            s = TaxiDomain.getClassicState(d, false);
+            s = TaxiDomain.getClassicState(d);
         }
         else{
-            s = TaxiDomain.getComplexState(false);
+            s = TaxiDomain.getComplexState();
         }
 
 
@@ -200,10 +199,10 @@ public class TaxiMaxQTest {
 
                 if(singlePassenger){
                     //sNew = TaxiDomain.getRandomClassicState(rand, d, false);
-                    sNew = TaxiDomain.getClassicState(d, false);
+                    sNew = TaxiDomain.getClassicState(d);
                 }
                 else{
-                    sNew = TaxiDomain.getComplexState(false);
+                    sNew = TaxiDomain.getComplexState();
                 }
 
 
@@ -225,19 +224,19 @@ public class TaxiMaxQTest {
         State sNew1;
         if(randomStart){
             if(singlePassenger){
-                sNew1 = TaxiDomain.getRandomClassicState(rand, d, false);
+                sNew1 = TaxiDomain.getRandomClassicState(rand, d);
             }
             else{
-                sNew1 = TaxiDomain.getComplexState(false);
+                sNew1 = TaxiDomain.getComplexState();
             }
 
         }
         else{
             if(singlePassenger) {
-                sNew1 = TaxiDomain.getClassicState(d, false);
+                sNew1 = TaxiDomain.getClassicState(d);
             }
             else{
-                sNew1 = TaxiDomain.getComplexState(false);
+                sNew1 = TaxiDomain.getComplexState();
             }
         }
 
