@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="burlap-3.0.2-SNAPSHOT-jar-with-dependencies">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../RockSampleDomain/burlap-3.0.2-SNAPSHOT-jar-with-dependencies.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
