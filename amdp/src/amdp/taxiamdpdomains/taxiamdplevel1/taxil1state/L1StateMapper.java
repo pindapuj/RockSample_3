@@ -1,8 +1,8 @@
 package amdp.taxiamdpdomains.taxiamdplevel1.taxil1state;
 
-import amdp.taxi.state.TaxiLocation;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
+import amdp.rocksample.state.RockSampleState;
+import amdp.rocksample.state.TaxiLocation;
+import amdp.rocksample.state.TaxiPassenger;
 import burlap.mdp.auxiliary.StateMapping;
 import burlap.mdp.core.state.State;
 
@@ -17,7 +17,7 @@ import static amdp.taxiamdpdomains.taxiamdplevel1.TaxiL1Domain.*;
 public class L1StateMapper implements StateMapping{
     @Override
     public State mapState(State s) {
-        TaxiState sL0 = (TaxiState)s;
+        RockSampleState sL0 = (RockSampleState)s;
         TaxiL1Agent taxiL1 = new TaxiL1Agent(TAXIL1CLASS+0, sL0.taxi.taxiOccupied ,ON_ROAD);
         List<TaxiL1Location> locationsL1 = new ArrayList<TaxiL1Location>();
 

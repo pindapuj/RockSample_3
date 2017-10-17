@@ -4,9 +4,8 @@ package amdp.maxq.taximaxq;
 import amdp.maxq.framework.GroundedTask;
 import amdp.maxq.framework.NonPrimitiveTaskNode;
 import amdp.maxq.framework.TaskNode;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
-import burlap.behavior.valuefunction.QValue;
+import amdp.rocksample.state.TaxiPassenger;
+import amdp.rocksample.state.RockSampleState;
 import burlap.mdp.core.TerminalFunction;
 import burlap.mdp.core.action.Action;
 import burlap.mdp.core.action.SimpleAction;
@@ -85,7 +84,7 @@ public class RootTaskNode extends NonPrimitiveTaskNode {
         private int createHash(){
             // check source and return state!
             int hashC =0;
-            for(TaxiPassenger p:((TaxiState)state).passengers){
+            for(TaxiPassenger p:((RockSampleState)state).passengers){
                 hashC = 31 * hashC + 17* p.originalSourceLocation.hashCode() + p.goalLocation.hashCode();
             }
             return hashC;

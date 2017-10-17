@@ -1,8 +1,8 @@
 package amdp.taxiamdpdomains.taxiamdplevel1;
 
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
 import amdp.taxiamdpdomains.taxiamdplevel1.taxil1state.*;
 import burlap.behavior.policy.Policy;
 import burlap.behavior.policy.PolicyUtils;
@@ -23,7 +23,6 @@ import burlap.mdp.core.oo.propositional.PropositionalFunction;
 import burlap.mdp.core.oo.state.OOState;
 import burlap.mdp.core.state.State;
 import burlap.mdp.singleagent.common.UniformCostRF;
-import burlap.mdp.singleagent.environment.EnvironmentOutcome;
 import burlap.mdp.singleagent.model.FactoredModel;
 import burlap.mdp.singleagent.model.RewardFunction;
 import burlap.mdp.singleagent.model.statemodel.FullStateModel;
@@ -33,8 +32,6 @@ import burlap.statehashing.simple.SimpleHashableStateFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import static amdp.taxi.TaxiDomain.TAXICLASS;
 
 /**
  * Created by ngopalan on 8/10/16.
@@ -60,7 +57,7 @@ public class TaxiL1Domain implements DomainGenerator {
 //    public static final String								PASSENGERL1CLASS = "passengerL1";
 
 
-    public static final String								TAXIL1CLASS = "taxi";
+    public static final String								TAXIL1CLASS = "rocksample";
     public static final String								LOCATIONL1CLASS = "location";
     public static final String								PASSENGERL1CLASS = "passenger";
 
@@ -206,7 +203,7 @@ public class TaxiL1Domain implements DomainGenerator {
                     TaxiL1Passenger np = ns.touchPassenger(p.name());
                     np.inTaxi  = false;
                     taxi.taxiOccupied = false;
-//                    p.setValue(LOCATIONATT, taxi.getStringValForAttribute(LOCATIONATT));
+//                    p.setValue(LOCATIONATT, rocksample.getStringValForAttribute(LOCATIONATT));
                     break;
                 }
 
@@ -398,8 +395,8 @@ public class TaxiL1Domain implements DomainGenerator {
 
         @Override
         public boolean isTrue(OOState s, String[] params) {
-            //			ObjectInstance taxi = s.getFirstObjectOfClass(TAXICLASS);
-            //			boolean taxiOccupied = taxi.getBooleanValForAttribute(OCCUPIEDTAXIATT);
+            //			ObjectInstance rocksample = s.getFirstObjectOfClass(TAXICLASS);
+            //			boolean taxiOccupied = rocksample.getBooleanValForAttribute(OCCUPIEDTAXIATT);
 
             TaxiL1State ns = ((TaxiL1State)s).copy();
 //
@@ -432,8 +429,8 @@ public class TaxiL1Domain implements DomainGenerator {
 
         @Override
         public boolean isTrue(OOState s, String[] params) {
-            //			ObjectInstance taxi = s.getFirstObjectOfClass(TAXICLASS);
-            //			boolean taxiOccupied = taxi.getBooleanValForAttribute(OCCUPIEDTAXIATT);
+            //			ObjectInstance rocksample = s.getFirstObjectOfClass(TAXICLASS);
+            //			boolean taxiOccupied = rocksample.getBooleanValForAttribute(OCCUPIEDTAXIATT);
 
             TaxiL1State ns = ((TaxiL1State)s).copy();
 //
@@ -466,10 +463,10 @@ public class TaxiL1Domain implements DomainGenerator {
 
 
 
-        TerminalFunction tf = new TaxiTerminationFunction();
-        RewardFunction rf = new TaxiRewardFunction(1,tf);
+        TerminalFunction tf = new RockSampleTerminationFunction();
+        RewardFunction rf = new RockSampleRewardFunction(1,tf);
 
-        TaxiDomain tdGen = new TaxiDomain(rf,tf);
+        RockSampleDomain tdGen = new RockSampleDomain(rf,tf);
 
 
 
@@ -482,9 +479,9 @@ public class TaxiL1Domain implements DomainGenerator {
         OOSADomain td = tdGen.generateDomain();
 
 
-        State startState = TaxiDomain.getRandomClassicState(rand, td);
+        State startState = RockSampleDomain.getRandomClassicState(rand, td);
 
-//        State startState = TaxiDomain.getClassicState(td, false);
+//        State startState = RockSampleDomain.getClassicState(td, false);
 
         L1StateMapper testMapper = new L1StateMapper();
 

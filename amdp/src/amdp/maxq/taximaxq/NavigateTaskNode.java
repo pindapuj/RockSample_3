@@ -3,15 +3,11 @@ package amdp.maxq.taximaxq;
 import amdp.maxq.framework.GroundedTask;
 import amdp.maxq.framework.NonPrimitiveTaskNode;
 import amdp.maxq.framework.TaskNode;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.state.TaxiAgent;
-import amdp.taxi.state.TaxiLocation;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
-import burlap.behavior.valuefunction.QValue;
+import amdp.rocksample.state.RockSampleState;
+import amdp.rocksample.state.RoverAgent;
+import amdp.rocksample.state.TaxiLocation;
 import burlap.mdp.core.action.Action;
 import burlap.mdp.core.action.SimpleAction;
-import burlap.mdp.core.oo.state.ObjectInstance;
 import burlap.mdp.core.state.State;
 import burlap.statehashing.HashableState;
 import burlap.statehashing.HashableStateFactory;
@@ -52,8 +48,8 @@ public class NavigateTaskNode extends NonPrimitiveTaskNode {
     @Override
     public boolean terminal(State s, Action navAction){
         // the parameters are from a grounded task of the type String[]
-        List<TaxiLocation> locations = ((TaxiState)s).locations;
-        TaxiAgent taxi = ((TaxiState)s).taxi;
+        List<TaxiLocation> locations = ((RockSampleState)s).locations;
+        RoverAgent taxi = ((RockSampleState)s).taxi;
         String goalLocation = navAction.actionName().split(":")[1];//((String[])parameters)[0];
         for(TaxiLocation location:locations){
             if(location.name().equals(goalLocation)){
@@ -108,8 +104,8 @@ public class NavigateTaskNode extends NonPrimitiveTaskNode {
 
         private int createHash(){
 
-            int x = ((TaxiState)state).taxi.x;
-            int y = ((TaxiState)state).taxi.y;
+            int x = ((RockSampleState)state).taxi.x;
+            int y = ((RockSampleState)state).taxi.y;
             return 10*x + y;
         }
 

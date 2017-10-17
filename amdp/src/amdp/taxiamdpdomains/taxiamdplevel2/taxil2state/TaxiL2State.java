@@ -1,7 +1,6 @@
 package amdp.taxiamdpdomains.taxiamdplevel2.taxil2state;
 
 
-import amdp.taxi.TaxiDomain;
 import amdp.taxiamdpdomains.taxiamdplevel2.TaxiL2Domain;
 import burlap.mdp.core.oo.state.MutableOOState;
 import burlap.mdp.core.oo.state.OOStateUtilities;
@@ -13,7 +12,6 @@ import burlap.mdp.core.state.StateUtilities;
 import burlap.mdp.core.state.annotations.ShallowCopyState;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static amdp.taxiamdpdomains.taxiamdplevel2.TaxiL2Domain.*;
@@ -145,11 +143,11 @@ public class TaxiL2State implements MutableOOState{
                 if(value instanceof String){
                     touchLocation(indL).colour = (String) value;
                 }
-                else throw new RuntimeException("Variable value must be String for key VAR_LOCATION in TaxiState for TaxiLocation: " + value.toString());
+                else throw new RuntimeException("Variable value must be String for key VAR_LOCATION in RockSampleState for TaxiLocation: " + value.toString());
 
             }
             else{
-                throw new RuntimeException("Unknown variable key in TaxiState for TaxiLocation: " + variableKey);
+                throw new RuntimeException("Unknown variable key in RockSampleState for TaxiLocation: " + variableKey);
             }
 
             return this;
@@ -161,7 +159,7 @@ public class TaxiL2State implements MutableOOState{
                 if(value instanceof String){
                     touchPassenger(indP).goalLocation = (String) value;
                 }
-                else throw new RuntimeException("Variable value must be String for key VAR_GOALLOCATION in TaxiState for TaxiPassenger: " + value.toString());
+                else throw new RuntimeException("Variable value must be String for key VAR_GOALLOCATION in RockSampleState for TaxiPassenger: " + value.toString());
 
             }
             else if(key.obVarKey.equals(VAR_INTAXI)){
@@ -174,7 +172,7 @@ public class TaxiL2State implements MutableOOState{
                 if(value instanceof String){
                     touchPassenger(indP).currentLocation = (String) value;
                 }
-                else throw new RuntimeException("Variable value must be String for key VAR_CURRENTLOCATION in TaxiState for the Taxi passenger: " + value.toString());
+                else throw new RuntimeException("Variable value must be String for key VAR_CURRENTLOCATION in RockSampleState for the Taxi passenger: " + value.toString());
             }
             else{
                 throw new RuntimeException("Unknown variable key " + variableKey);

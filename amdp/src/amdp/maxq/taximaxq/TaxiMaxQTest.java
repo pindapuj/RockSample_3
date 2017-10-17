@@ -1,20 +1,14 @@
 package amdp.maxq.taximaxq;
 
 import amdp.maxq.framework.*;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
-import amdp.taxi.TaxiVisualizer;
-import amdp.taxi.state.TaxiLocation;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
+import amdp.rocksample.state.TaxiLocation;
+import amdp.rocksample.state.TaxiPassenger;
+import amdp.rocksample.state.RockSampleState;
 import amdp.utilities.BoltzmannQPolicyWithCoolingSchedule;
-import amdp.utilities.QLearningForMaxQ;
-import burlap.behavior.policy.GreedyQPolicy;
-import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
-import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
-import burlap.behavior.singleagent.learning.tdmethods.QLearning;
 import burlap.debugtools.DPrint;
 import burlap.debugtools.RandomFactory;
 import burlap.mdp.core.TerminalFunction;
@@ -25,14 +19,6 @@ import burlap.mdp.singleagent.environment.SimulatedEnvironment;
 import burlap.mdp.singleagent.model.RewardFunction;
 import burlap.mdp.singleagent.oo.OOSADomain;
 import burlap.statehashing.simple.SimpleHashableStateFactory;
-import burlap.visualizer.Visualizer;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.ui.ApplicationFrame;
 
 
 import java.util.ArrayList;
@@ -40,7 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Runner for the taxi max Q runner
+ * Runner for the rocksample max Q runner
  * Created by ngopalan on 5/24/16.
  */
 public class TaxiMaxQTest {
@@ -74,11 +60,11 @@ public class TaxiMaxQTest {
 
 
 
-//        State state = TaxiDomain.getComplexState(d);
-        TerminalFunction taxiTF = new TaxiTerminationFunction();
-        RewardFunction taxiRF = new TaxiRewardFunction(1,taxiTF);
+//        State state = RockSampleDomain.getComplexState(d);
+        TerminalFunction taxiTF = new RockSampleTerminationFunction();
+        RewardFunction taxiRF = new RockSampleRewardFunction(1,taxiTF);
 
-        TaxiDomain TDGen = new TaxiDomain(taxiRF, taxiTF);
+        RockSampleDomain TDGen = new RockSampleDomain(taxiRF, taxiTF);
 
 //        tdGen.setDeterministicTransitionDynamics();
         TDGen.setTransitionDynamicsLikeFickleTaxiProlem();
@@ -89,32 +75,32 @@ public class TaxiMaxQTest {
 
         State s;
         if(singlePassenger){
-            //sNew = TaxiDomain.getRandomClassicState(rand, d, false);
-            s = TaxiDomain.getClassicState(d);
+            //sNew = RockSampleDomain.getRandomClassicState(rand, d, false);
+            s = RockSampleDomain.getClassicState(d);
         }
         else{
-            s = TaxiDomain.getComplexState();
+            s = RockSampleDomain.getComplexState();
         }
 
 
-        List<ObjectInstance> passengers = ((TaxiState)s).objectsOfClass(TaxiDomain.PASSENGERCLASS);
+        List<ObjectInstance> passengers = ((RockSampleState)s).objectsOfClass(RockSampleDomain.PASSENGERCLASS);
         List<String[]> passengersList = new ArrayList<String[]>();
         for(ObjectInstance p : passengers){
             passengersList.add(new String[]{((TaxiPassenger)p).name()});
         }
 
-        List<ObjectInstance> locations = ((TaxiState)s).objectsOfClass(TaxiDomain.LOCATIONCLASS);
+        List<ObjectInstance> locations = ((RockSampleState)s).objectsOfClass(RockSampleDomain.LOCATIONCLASS);
         List<String[]> locationsList = new ArrayList<String[]>();
         for(ObjectInstance l : locations){
             locationsList.add(new String[]{((TaxiLocation)l).name()});
         }
 
-        ActionType east = d.getAction(TaxiDomain.ACTION_EAST);
-        ActionType west = d.getAction(TaxiDomain.ACTION_WEST);
-        ActionType south = d.getAction(TaxiDomain.ACTION_SOUTH);
-        ActionType north = d.getAction(TaxiDomain.ACTION_NORTH);
-        ActionType pickup = d.getAction(TaxiDomain.ACTION_PICKUP);
-        ActionType dropoff = d.getAction(TaxiDomain.ACTION_DROPOFF);
+        ActionType east = d.getAction(RockSampleDomain.ACTION_EAST);
+        ActionType west = d.getAction(RockSampleDomain.ACTION_WEST);
+        ActionType south = d.getAction(RockSampleDomain.ACTION_SOUTH);
+        ActionType north = d.getAction(RockSampleDomain.ACTION_NORTH);
+        ActionType pickup = d.getAction(RockSampleDomain.ACTION_PICKUP);
+        ActionType dropoff = d.getAction(RockSampleDomain.ACTION_DROPOFF);
 
         TaskNode et = new TaxiMAXQL0CardinalMoveTaskNode(east);
         TaskNode wt = new TaxiMAXQL0CardinalMoveTaskNode(west);
@@ -154,7 +140,7 @@ public class TaxiMaxQTest {
         String str = "-------- MAXQ Test! ----------";
         DPrint.cl(debugCode,str);
 //
-//            State state = TaxiDomain.getClassicState(d, false);
+//            State state = RockSampleDomain.getClassicState(d, false);
 
         int numberOfTests = 1;
         int numberOfLearningEpisodes = 100;
@@ -195,18 +181,18 @@ public class TaxiMaxQTest {
             DPrint.cl(debugCode,str);
             str = "-------------------------------------------------------------";
             DPrint.cl(debugCode,str);
-            State sNew;// = TaxiDomain.getRandomClassicState(rand, d, false);
+            State sNew;// = RockSampleDomain.getRandomClassicState(rand, d, false);
 
                 if(singlePassenger){
-                    //sNew = TaxiDomain.getRandomClassicState(rand, d, false);
-                    sNew = TaxiDomain.getClassicState(d);
+                    //sNew = RockSampleDomain.getRandomClassicState(rand, d, false);
+                    sNew = RockSampleDomain.getClassicState(d);
                 }
                 else{
-                    sNew = TaxiDomain.getComplexState();
+                    sNew = RockSampleDomain.getComplexState();
                 }
 
 
-//            State sNew = TaxiDomain.getComplexState(false);
+//            State sNew = RockSampleDomain.getComplexState(false);
             SimulatedEnvironment envN = new SimulatedEnvironment(d, sNew);
 
             Episode ea = maxqLearningAgent.runLearningEpisode(envN, 5000);
@@ -224,19 +210,19 @@ public class TaxiMaxQTest {
         State sNew1;
         if(randomStart){
             if(singlePassenger){
-                sNew1 = TaxiDomain.getRandomClassicState(rand, d);
+                sNew1 = RockSampleDomain.getRandomClassicState(rand, d);
             }
             else{
-                sNew1 = TaxiDomain.getComplexState();
+                sNew1 = RockSampleDomain.getComplexState();
             }
 
         }
         else{
             if(singlePassenger) {
-                sNew1 = TaxiDomain.getClassicState(d);
+                sNew1 = RockSampleDomain.getClassicState(d);
             }
             else{
-                sNew1 = TaxiDomain.getComplexState();
+                sNew1 = RockSampleDomain.getComplexState();
             }
         }
 
@@ -267,7 +253,7 @@ public class TaxiMaxQTest {
         str = "number of params MAXQQ = " + maxqLearningAgent.numberOfParams();
 //        DPrint.cl(debugCode,str);
         System.out.println(str);
-//        Visualizer v = TaxiVisualizer.getVisualizer(5, 5);
+//        Visualizer v = RockSampleVisualizer.getVisualizer(5, 5);
 //        new EpisodeSequenceVisualizer(v, d, testEpisodesMAXQ);
 
 //        str = "num backups: " + maxqLearningAgent.getNumberOfBackups();

@@ -1,9 +1,9 @@
 package amdp.taxiamdpdomains.taxiamdp;
 
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
-import amdp.taxi.TaxiVisualizer;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
+import amdp.rocksample.RockSampleVisualizer;
 import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
 import burlap.behavior.singleagent.learning.modellearning.rmax.PotentialShapedRMax;
@@ -33,12 +33,12 @@ public class TaxiBaseLearner {
         boolean randomStart = true;
         boolean singlePassenger = true;
 
-        TerminalFunction tf = new TaxiTerminationFunction();
-        RewardFunction rf = new TaxiRewardFunction(1,tf);
+        TerminalFunction tf = new RockSampleTerminationFunction();
+        RewardFunction rf = new RockSampleRewardFunction(1,tf);
 
 
 
-        TaxiDomain tdGen = new TaxiDomain(rf,tf);
+        RockSampleDomain tdGen = new RockSampleDomain(rf,tf);
 
 
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
@@ -50,12 +50,12 @@ public class TaxiBaseLearner {
 
         //setup initial state
 //    State s = new GridWorldState(new GridAgent(0, 0), new GridLocation(10, 10, "loc0"));
-        State s = TaxiDomain.getRandomClassicState(rand, td);
+        State s = RockSampleDomain.getRandomClassicState(rand, td);
 
         //create visualizer and explorer
 
 
-        Visualizer v = TaxiVisualizer.getVisualizer(5, 5);
+        Visualizer v = RockSampleVisualizer.getVisualizer(5, 5);
         List<Episode> eaList = new ArrayList<Episode>();
 //    SampleModel model = new
         Environment env = new SimulatedEnvironment(td, s);

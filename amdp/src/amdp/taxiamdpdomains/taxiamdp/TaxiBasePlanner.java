@@ -1,44 +1,22 @@
 package amdp.taxiamdpdomains.taxiamdp;
 
-import amdp.amdpframework.AMDPAgent;
-import amdp.amdpframework.AMDPPolicyGenerator;
-import amdp.amdpframework.GroundedTask;
-import amdp.amdpframework.TaskNode;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
-import amdp.taxi.TaxiVisualizer;
-import amdp.taxiamdpdomains.taxiamdplevel1.TaxiL1Domain;
-import amdp.taxiamdpdomains.taxiamdplevel1.TaxiL1TerminalFunction;
-import amdp.taxiamdpdomains.taxiamdplevel1.taxil1state.L1StateMapper;
-import amdp.taxiamdpdomains.taxiamdplevel2.TaxiL2Domain;
-import amdp.taxiamdpdomains.taxiamdplevel2.TaxiL2TerminalFunction;
-import amdp.taxiamdpdomains.taxiamdplevel2.taxil2state.L2StateMapper;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
 import amdp.taxiamdpdomains.testingtools.BoundedRTDPForTests;
 import amdp.taxiamdpdomains.testingtools.MutableGlobalInteger;
 import burlap.behavior.policy.Policy;
 import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
-import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
-import burlap.behavior.singleagent.planning.stochastic.rtdp.BoundedRTDP;
-import burlap.behavior.singleagent.planning.stochastic.valueiteration.ValueIteration;
 import burlap.behavior.valuefunction.ConstantValueFunction;
 import burlap.debugtools.DPrint;
 import burlap.debugtools.RandomFactory;
-import burlap.mdp.auxiliary.StateMapping;
-import burlap.mdp.core.Domain;
 import burlap.mdp.core.TerminalFunction;
-import burlap.mdp.core.action.ActionType;
 import burlap.mdp.core.state.State;
-import burlap.mdp.singleagent.SADomain;
-import burlap.mdp.singleagent.common.UniformCostRF;
 import burlap.mdp.singleagent.environment.SimulatedEnvironment;
-import burlap.mdp.singleagent.model.FactoredModel;
 import burlap.mdp.singleagent.model.RewardFunction;
 import burlap.mdp.singleagent.oo.OOSADomain;
-import burlap.mdp.stochasticgames.agent.AgentFactory;
 import burlap.statehashing.simple.SimpleHashableStateFactory;
-import burlap.visualizer.Visualizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,10 +62,10 @@ public class TaxiBasePlanner {
             }
         }
 
-        TerminalFunction tf = new TaxiTerminationFunction();
-        RewardFunction rf = new TaxiRewardFunction(1,tf);
+        TerminalFunction tf = new RockSampleTerminationFunction();
+        RewardFunction rf = new RockSampleRewardFunction(1,tf);
 
-        TaxiDomain tdGen = new TaxiDomain(rf,tf);
+        RockSampleDomain tdGen = new RockSampleDomain(rf,tf);
 
 
 
@@ -104,24 +82,24 @@ public class TaxiBasePlanner {
 
         if(randomStart){
             if(singlePassenger){
-                startState = TaxiDomain.getRandomClassicState(rand, td);
+                startState = RockSampleDomain.getRandomClassicState(rand, td);
             }
             else{
-                startState = TaxiDomain.getComplexState();
+                startState = RockSampleDomain.getComplexState();
             }
 
         }
         else{
             if(singlePassenger) {
-                startState = TaxiDomain.getClassicState(td);
+                startState = RockSampleDomain.getClassicState(td);
             }
             else{
-                startState = TaxiDomain.getComplexState();
+                startState = RockSampleDomain.getComplexState();
             }
         }
 
 
-//        startState = TaxiDomain.getComplexState(false);
+//        startState = RockSampleDomain.getComplexState(false);
 
         BoundedRTDPForTests brtdp = new BoundedRTDPForTests(td, 0.99,  new SimpleHashableStateFactory(false),new ConstantValueFunction(0.),
                 new ConstantValueFunction(1.), 0.01, 500);
@@ -139,7 +117,7 @@ public class TaxiBasePlanner {
 
         Episode e = PolicyUtils.rollout(p, startState, td.getModel(),maxTrajectoryLength);
 
-//        Visualizer v = TaxiVisualizer.getVisualizer(5, 5);
+//        Visualizer v = RockSampleVisualizer.getVisualizer(5, 5);
 //        List<Episode> eaList = new ArrayList<Episode>();
 //        eaList.add(e);
 //        new EpisodeSequenceVisualizer(v, td, eaList);

@@ -1,21 +1,19 @@
 package amdp.maxq.taximaxq;
 
 import amdp.maxq.framework.*;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
-import amdp.taxi.TaxiVisualizer;
-import amdp.taxi.state.TaxiLocation;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
+import amdp.rocksample.RockSampleVisualizer;
+import amdp.rocksample.state.RockSampleState;
+import amdp.rocksample.state.TaxiLocation;
+import amdp.rocksample.state.TaxiPassenger;
 import amdp.utilities.BoltzmannQPolicyWithCoolingSchedule;
 import amdp.utilities.QLearningForMaxQ;
 import burlap.behavior.policy.GreedyQPolicy;
 import burlap.behavior.policy.PolicyUtils;
 import burlap.behavior.singleagent.Episode;
 import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
-import burlap.behavior.singleagent.learning.tdmethods.QLearning;
-import burlap.debugtools.DPrint;
 import burlap.debugtools.RandomFactory;
 import burlap.mdp.core.TerminalFunction;
 import burlap.mdp.core.action.ActionType;
@@ -40,7 +38,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Runner for the taxi max Q runner
+ * Runner for the rocksample max Q runner
  * Created by ngopalan on 5/24/16.
  */
 public class TaxiMaxQRunner {
@@ -54,11 +52,11 @@ public class TaxiMaxQRunner {
         Random rand = randomFactory.getMapped(0);
 
 
-//        State state = TaxiDomain.getComplexState(d);
-        TerminalFunction taxiTF = new TaxiTerminationFunction();
-        RewardFunction taxiRF = new TaxiRewardFunction(1,taxiTF);
+//        State state = RockSampleDomain.getComplexState(d);
+        TerminalFunction taxiTF = new RockSampleTerminationFunction();
+        RewardFunction taxiRF = new RockSampleRewardFunction(1,taxiTF);
 
-        TaxiDomain TDGen = new TaxiDomain(taxiRF, taxiTF);
+        RockSampleDomain TDGen = new RockSampleDomain(taxiRF, taxiTF);
 
 //        tdGen.setDeterministicTransitionDynamics();
         TDGen.setTransitionDynamicsLikeFickleTaxiProlem();
@@ -67,28 +65,28 @@ public class TaxiMaxQRunner {
 //        TDGen.includeFuel = false;
         final OOSADomain d = TDGen.generateDomain();
 
-        State s = TaxiDomain.getRandomClassicState(rand, d);
+        State s = RockSampleDomain.getRandomClassicState(rand, d);
 
 
 
-        List<ObjectInstance> passengers = ((TaxiState)s).objectsOfClass(TaxiDomain.PASSENGERCLASS);
+        List<ObjectInstance> passengers = ((RockSampleState)s).objectsOfClass(RockSampleDomain.PASSENGERCLASS);
         List<String[]> passengersList = new ArrayList<String[]>();
         for(ObjectInstance p : passengers){
             passengersList.add(new String[]{((TaxiPassenger)p).name()});
         }
 
-        List<ObjectInstance> locations = ((TaxiState)s).objectsOfClass(TaxiDomain.LOCATIONCLASS);
+        List<ObjectInstance> locations = ((RockSampleState)s).objectsOfClass(RockSampleDomain.LOCATIONCLASS);
         List<String[]> locationsList = new ArrayList<String[]>();
         for(ObjectInstance l : locations){
             locationsList.add(new String[]{((TaxiLocation)l).name()});
         }
 
-        ActionType east = d.getAction(TaxiDomain.ACTION_EAST);
-        ActionType west = d.getAction(TaxiDomain.ACTION_WEST);
-        ActionType south = d.getAction(TaxiDomain.ACTION_SOUTH);
-        ActionType north = d.getAction(TaxiDomain.ACTION_NORTH);
-        ActionType pickup = d.getAction(TaxiDomain.ACTION_PICKUP);
-        ActionType dropoff = d.getAction(TaxiDomain.ACTION_DROPOFF);
+        ActionType east = d.getAction(RockSampleDomain.ACTION_EAST);
+        ActionType west = d.getAction(RockSampleDomain.ACTION_WEST);
+        ActionType south = d.getAction(RockSampleDomain.ACTION_SOUTH);
+        ActionType north = d.getAction(RockSampleDomain.ACTION_NORTH);
+        ActionType pickup = d.getAction(RockSampleDomain.ACTION_PICKUP);
+        ActionType dropoff = d.getAction(RockSampleDomain.ACTION_DROPOFF);
 
         TaskNode et = new TaxiMAXQL0CardinalMoveTaskNode(east);
         TaskNode wt = new TaxiMAXQL0CardinalMoveTaskNode(west);
@@ -129,7 +127,7 @@ public class TaxiMaxQRunner {
 
             System.out.println("-------- MAXQ Test! ----------");
 //
-//            State state = TaxiDomain.getClassicState(d, false);
+//            State state = RockSampleDomain.getClassicState(d, false);
 
             int numberOfTests = 1;
             int numberOfLearningEpisodes = 100;
@@ -187,7 +185,7 @@ public class TaxiMaxQRunner {
 
                     System.out.println("MAXQ learning episode: " + j);
                     System.out.println("-------------------------------------------------------------");
-                    State sNew = TaxiDomain.getRandomClassicState(rand, d);
+                    State sNew = RockSampleDomain.getRandomClassicState(rand, d);
                     SimulatedEnvironment envN = new SimulatedEnvironment(d, sNew);
 
                     Episode ea = maxqLearningAgent.runLearningEpisode(envN,5000);
@@ -199,7 +197,7 @@ public class TaxiMaxQRunner {
                         maxqLearningAgent.setFreezeLearning(true);
                         System.out.println("MAXQ test episode: " + j / takeModOf);
                         System.out.println("-------------------------------------------------------------");
-                        State sNew1 = TaxiDomain.getRandomClassicState(rand, d);
+                        State sNew1 = RockSampleDomain.getRandomClassicState(rand, d);
                         SimulatedEnvironment envN1 = new SimulatedEnvironment(d, sNew1);
                         Episode ea1 = maxqLearningAgent.runLearningEpisode(envN1, 1000);
 //                    episodesMAXQ.add(ea1);
@@ -219,7 +217,7 @@ public class TaxiMaxQRunner {
                 }
 
                 System.out.println("number of params MAXQQ = " + maxqLearningAgent.numberOfParams());
-                Visualizer v = TaxiVisualizer.getVisualizer(5,5);
+                Visualizer v = RockSampleVisualizer.getVisualizer(5,5);
 //                new EpisodeSequenceVisualizer(v, d, episodesMAXQ);
                 new EpisodeSequenceVisualizer(v,d,testEpisodesMAXQ);
 
@@ -273,7 +271,7 @@ public class TaxiMaxQRunner {
 //        env.resetEnvironment();
 //        episodesQ.add(q.runLearningEpisode(env));
 
-//        Visualizer v = TaxiVisualizer.getVisualizer(5,5);
+//        Visualizer v = RockSampleVisualizer.getVisualizer(5,5);
 //        new EpisodeSequenceVisualizer(v, d, episodesMAXQ);
 //        new EpisodeSequenceVisualizer(v, d, episodesQ);
 
@@ -373,7 +371,7 @@ public class TaxiMaxQRunner {
 
 
             for (int i = 0; i < numberOfTests; i++) {
-//                State state = TaxiDomain.getRandomClassicState(rand, d, false);
+//                State state = RockSampleDomain.getRandomClassicState(rand, d, false);
                 SimulatedEnvironment env = new SimulatedEnvironment(d, s);
                 List<Episode> episodesQ = new ArrayList<Episode>();
 //                QLearning q = new QLearning(td, 0.95, new SimpleHashableStateFactory(), 0.123, 0.35);
@@ -387,7 +385,7 @@ public class TaxiMaxQRunner {
                 for (int j = 1; j <= numberOfLearningEpisodes; j++) {
                     System.out.println("QL test: " +i+", "+ "QL learning episode: " + j);
                     System.out.println("-------------------------------------------------------------");
-                    State sNew = TaxiDomain.getRandomClassicState(rand, d);
+                    State sNew = RockSampleDomain.getRandomClassicState(rand, d);
                     SimulatedEnvironment envN = new SimulatedEnvironment(d, sNew);
                     Episode ea = q.runLearningEpisode(envN);
                     episodesQ.add(ea);

@@ -3,12 +3,10 @@ package amdp.maxq.taximaxq;
 import amdp.maxq.framework.GroundedTask;
 import amdp.maxq.framework.NonPrimitiveTaskNode;
 import amdp.maxq.framework.TaskNode;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.state.TaxiAgent;
-import amdp.taxi.state.TaxiLocation;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
-import burlap.behavior.valuefunction.QValue;
+import amdp.rocksample.state.RockSampleState;
+import amdp.rocksample.state.RoverAgent;
+import amdp.rocksample.state.TaxiLocation;
+import amdp.rocksample.state.TaxiPassenger;
 import burlap.mdp.core.action.Action;
 import burlap.mdp.core.action.SimpleAction;
 import burlap.mdp.core.state.State;
@@ -77,24 +75,24 @@ public class PutTaskNode extends NonPrimitiveTaskNode {
 
     @Override
     public boolean terminal(State s, Action action) {
-        // check if the passenger in taxi and taxi with a passenger
+        // check if the passenger in rocksample and rocksample with a passenger
 
         String passengerName = action.actionName().split(":")[1];//((String[])parameters)[0];
-        TaxiPassenger passenger = (TaxiPassenger)((TaxiState)s).object(passengerName);
-        // check if passenger at goal location and out of taxi
+        TaxiPassenger passenger = (TaxiPassenger)((RockSampleState)s).object(passengerName);
+        // check if passenger at goal location and out of rocksample
         boolean inTaxi = passenger.inTaxi;
 //        return !inTaxi;
         if(inTaxi){
             return false;
         }
 //        //TODO: test if passenger at goal location!
-//        String passgengerGoalLocation = passenger.getStringValForAttribute(TaxiDomain.GOALLOCATIONATT);
+//        String passgengerGoalLocation = passenger.getStringValForAttribute(RockSampleDomain.GOALLOCATIONATT);
 
-        List<TaxiLocation> locationList = ((TaxiState)s).locations;
+        List<TaxiLocation> locationList = ((RockSampleState)s).locations;
         String goalLocation = passenger.goalLocation;
         for(TaxiLocation l :locationList){
 //                System.out.println("goal: " + goalLocation);
-//                System.out.println("location attribute: " + l.getStringValForAttribute(TaxiDomain.LOCATIONATT));
+//                System.out.println("location attribute: " + l.getStringValForAttribute(RockSampleDomain.LOCATIONATT));
             if(goalLocation.equals(l.colour)){
                 if(l.x==passenger.x
                         && l.y==passenger.y){
@@ -114,9 +112,9 @@ public class PutTaskNode extends NonPrimitiveTaskNode {
         for(GroundedTask gt:this.groundedTasks){
 //            Object parameters = gt.getParams();
             String passengerName = gt.getAction().actionName().split(":")[1];//((String[])parameters)[0];
-            TaxiPassenger passenger = (TaxiPassenger)((TaxiState)s).object(passengerName);
+            TaxiPassenger passenger = (TaxiPassenger)((RockSampleState)s).object(passengerName);
             boolean inTaxi = passenger.inTaxi;
-            TaxiAgent taxi = ((TaxiState)s).taxi;
+            RoverAgent taxi = ((RockSampleState)s).taxi;
             boolean taxiOccupied = taxi.taxiOccupied;
             if(inTaxi&&taxiOccupied){
                 gtList.add(gt);
@@ -138,7 +136,7 @@ public class PutTaskNode extends NonPrimitiveTaskNode {
         private int createHash(){
             // check source and return state!
             int hashC =0;
-            for(TaxiPassenger p:((TaxiState)state).passengers){
+            for(TaxiPassenger p:((RockSampleState)state).passengers){
                 hashC = 31 * hashC + p.goalLocation.hashCode();
             }
             return hashC;
@@ -178,10 +176,10 @@ public class PutTaskNode extends NonPrimitiveTaskNode {
         }
 
         private int createHash(){
-            int x = ((TaxiState)state).taxi.x;
-            int y = ((TaxiState)state).taxi.y;
+            int x = ((RockSampleState)state).taxi.x;
+            int y = ((RockSampleState)state).taxi.y;
             int hashC =0;
-            for(TaxiPassenger p:((TaxiState)state).passengers){
+            for(TaxiPassenger p:((RockSampleState)state).passengers){
                 hashC = 31 * hashC + p.goalLocation.hashCode();
             }
             return 31*x + 17* y + hashC;

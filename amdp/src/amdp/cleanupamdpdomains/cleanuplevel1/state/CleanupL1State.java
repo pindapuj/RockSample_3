@@ -43,7 +43,7 @@ public class CleanupL1State  implements MutableOOState {
     @Override
     public MutableOOState removeObject(String objectName) {
         if(objectName.equals(agent.name())){
-            new RuntimeException("Cannot remove taxi agent object from state.");
+            new RuntimeException("Cannot remove rocksample agent object from state.");
         }
         int indL = this.roomInd(objectName);
         if(indL != -1) {

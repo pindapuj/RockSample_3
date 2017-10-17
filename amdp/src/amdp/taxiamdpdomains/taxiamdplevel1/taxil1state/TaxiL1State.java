@@ -1,12 +1,11 @@
 package amdp.taxiamdpdomains.taxiamdplevel1.taxil1state;
 
-import amdp.taxi.TaxiDomain;
+import amdp.rocksample.RockSampleDomain;
 import burlap.mdp.core.oo.state.MutableOOState;
 import burlap.mdp.core.oo.state.OOStateUtilities;
 import burlap.mdp.core.oo.state.OOVariableKey;
 import burlap.mdp.core.oo.state.ObjectInstance;
 import burlap.mdp.core.state.MutableState;
-import burlap.mdp.core.state.State;
 import burlap.mdp.core.state.StateUtilities;
 import burlap.mdp.core.state.annotations.ShallowCopyState;
 
@@ -44,7 +43,7 @@ public class TaxiL1State implements MutableOOState{
     @Override
     public MutableOOState removeObject(String objectName) {
         if(objectName.equals(taxi.name())){
-            new RuntimeException("Cannot remove taxi agent object from state.");
+            new RuntimeException("Cannot remove rocksample agent object from state.");
         }
 
         int indL = this.locationInd(objectName);
@@ -136,13 +135,13 @@ public class TaxiL1State implements MutableOOState{
 
     @Override
     public List<ObjectInstance> objectsOfClass(String oclass) {
-        if(oclass.equals(TaxiDomain.TAXICLASS)){
+        if(oclass.equals(RockSampleDomain.TAXICLASS)){
             return Arrays.<ObjectInstance>asList(taxi);
         }
-        else if(oclass.equals(TaxiDomain.LOCATIONCLASS)){
+        else if(oclass.equals(RockSampleDomain.LOCATIONCLASS)){
             return new ArrayList<ObjectInstance>(locations);
         }
-        else if(oclass.equals(TaxiDomain.PASSENGERCLASS)){
+        else if(oclass.equals(RockSampleDomain.PASSENGERCLASS)){
             return new ArrayList<ObjectInstance>(passengers);
         }
 
@@ -163,10 +162,10 @@ public class TaxiL1State implements MutableOOState{
                 if(value instanceof String){
                     touchTaxi().currentLocation = (String) value;
                 }
-                else throw new RuntimeException("Variable value must be String for key VAR_CURRENTLOCATION in TaxiState for the Taxi agent: " + value.toString());
+                else throw new RuntimeException("Variable value must be String for key VAR_CURRENTLOCATION in RockSampleState for the Taxi agent: " + value.toString());
             }
             else{
-                throw new RuntimeException("Unknown variable key in TaxiState for TaxiAgent: " + variableKey);
+                throw new RuntimeException("Unknown variable key in RockSampleState for RoverAgent: " + variableKey);
             }
             return this;
         }
@@ -176,11 +175,11 @@ public class TaxiL1State implements MutableOOState{
                 if(value instanceof String){
                     touchLocation(indL).colour = (String) value;
                 }
-                else throw new RuntimeException("Variable value must be String for key VAR_LOCATION in TaxiState for TaxiLocation: " + value.toString());
+                else throw new RuntimeException("Variable value must be String for key VAR_LOCATION in RockSampleState for TaxiLocation: " + value.toString());
 
             }
             else{
-                throw new RuntimeException("Unknown variable key in TaxiState for TaxiLocation: " + variableKey);
+                throw new RuntimeException("Unknown variable key in RockSampleState for TaxiLocation: " + variableKey);
             }
 
             return this;
@@ -192,7 +191,7 @@ public class TaxiL1State implements MutableOOState{
                 if(value instanceof String){
                     touchPassenger(indP).goalLocation = (String) value;
                 }
-                else throw new RuntimeException("Variable value must be String for key VAR_GOALLOCATION in TaxiState for TaxiPassenger: " + value.toString());
+                else throw new RuntimeException("Variable value must be String for key VAR_GOALLOCATION in RockSampleState for TaxiPassenger: " + value.toString());
 
             }
             else if(key.obVarKey.equals(VAR_INTAXI)){
@@ -205,7 +204,7 @@ public class TaxiL1State implements MutableOOState{
                 if(value instanceof String){
                     touchPassenger(indP).currentLocation = (String) value;
                 }
-                else throw new RuntimeException("Variable value must be String for key VAR_CURRENTLOCATION in TaxiState for the Taxi passenger: " + value.toString());
+                else throw new RuntimeException("Variable value must be String for key VAR_CURRENTLOCATION in RockSampleState for the Taxi passenger: " + value.toString());
             }
             else{
                 throw new RuntimeException("Unknown variable key " + variableKey);

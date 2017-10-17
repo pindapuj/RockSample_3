@@ -1,10 +1,10 @@
 package amdp.maxq.taximaxq;
 
 import amdp.maxq.framework.PrimitiveTaskNode;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.state.TaxiAgent;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.state.RockSampleState;
+import amdp.rocksample.state.RoverAgent;
+import amdp.rocksample.state.TaxiPassenger;
 import burlap.mdp.core.action.ActionType;
 import burlap.mdp.core.oo.state.ObjectInstance;
 import burlap.mdp.core.state.State;
@@ -53,16 +53,16 @@ public class PickupTaskNode extends PrimitiveTaskNode {
         private boolean legalPickup(){
 
             boolean flag = false;
-            ObjectInstance taxi = ((TaxiState)state).objectsOfClass(TaxiDomain.TAXICLASS).get(0);
-            boolean taxiOccupied = ((TaxiAgent)taxi).taxiOccupied;
+            ObjectInstance taxi = ((RockSampleState)state).objectsOfClass(RockSampleDomain.TAXICLASS).get(0);
+            boolean taxiOccupied = ((RoverAgent)taxi).taxiOccupied;
 
             if(taxiOccupied){
                 return flag;
             }
-            List<ObjectInstance> passengers = ((TaxiState)state).objectsOfClass(TaxiDomain.PASSENGERCLASS);
-            int taxiX = ((TaxiAgent)taxi).x;
-            int taxiY = ((TaxiAgent)taxi).y;
-//            List<ObjectInstance> locationList = state.getObjectsOfClass(TaxiDomain.LOCATIONCLASS);
+            List<ObjectInstance> passengers = ((RockSampleState)state).objectsOfClass(RockSampleDomain.PASSENGERCLASS);
+            int taxiX = ((RoverAgent)taxi).x;
+            int taxiY = ((RoverAgent)taxi).y;
+//            List<ObjectInstance> locationList = state.getObjectsOfClass(RockSampleDomain.LOCATIONCLASS);
             for(ObjectInstance p : passengers){
                 if(!((TaxiPassenger)p).inTaxi){
                     if(taxiX==((TaxiPassenger)p).x

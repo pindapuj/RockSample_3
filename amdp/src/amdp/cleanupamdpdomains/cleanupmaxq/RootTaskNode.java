@@ -6,9 +6,6 @@ import amdp.cleanupamdpdomains.cleanuplevel2.state.CleanupL2StateMapper;
 import amdp.maxq.framework.GroundedTask;
 import amdp.maxq.framework.NonPrimitiveTaskNode;
 import amdp.maxq.framework.TaskNode;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
-import burlap.behavior.valuefunction.QValue;
 import burlap.mdp.auxiliary.StateMapping;
 import burlap.mdp.core.TerminalFunction;
 import burlap.mdp.core.action.Action;
@@ -16,7 +13,6 @@ import burlap.mdp.core.action.SimpleAction;
 import burlap.mdp.core.state.State;
 import burlap.statehashing.HashableState;
 import burlap.statehashing.HashableStateFactory;
-import burlap.statehashing.WrappedHashableState;
 import burlap.statehashing.simple.SimpleHashableStateFactory;
 
 import java.util.ArrayList;

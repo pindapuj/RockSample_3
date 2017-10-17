@@ -62,7 +62,7 @@ public class TaxiL1Agent implements ObjectInstance {
     @Override
     public Object get(Object variableKey) {
         if(!(variableKey instanceof String)){
-            throw new RuntimeException("TaxiAgent variable key must be a string");
+            throw new RuntimeException("RoverAgent variable key must be a string");
         }
         String key = (String)variableKey;
         if(key.equals(VAR_OCCUPIEDTAXI)){
@@ -72,7 +72,7 @@ public class TaxiL1Agent implements ObjectInstance {
             return currentLocation;
         }
 
-        throw new RuntimeException("Unknown key for TaxiAgent: " + key);
+        throw new RuntimeException("Unknown key for RoverAgent: " + key);
     }
 
     @Override

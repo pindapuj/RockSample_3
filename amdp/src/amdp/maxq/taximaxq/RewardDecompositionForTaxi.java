@@ -1,6 +1,6 @@
 package amdp.maxq.taximaxq;
 
-import amdp.taxi.TaxiDomain;
+import amdp.rocksample.RockSampleDomain;
 import burlap.mdp.singleagent.environment.EnvironmentOutcome;
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -21,7 +21,7 @@ public class RewardDecompositionForTaxi {
 
         // wrong pickup?
 
-        if(eo.a.actionName().equals(TaxiDomain.ACTION_PICKUP)){
+        if(eo.a.actionName().equals(RockSampleDomain.ACTION_PICKUP)){
 //            Pair<String, Double>
         }
 
