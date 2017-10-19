@@ -401,6 +401,8 @@ public class RockSampleDomain implements DomainGenerator{
                                 double[] locationChangeProbabilities =locationTransitionDynamics[locationIndex];
                                 List<ObjectInstance> locations = ((RockSampleState) ns).objectsOfClass(LOCATIONCLASS);
 
+                                /* change to 2 b/c changed the number of locations */
+                                //TO DO: change to number of rocks
                                 for (int j = 0; j <locationChangeProbabilities.length;j++){
                                     State nns = ns.copy();
                                     TaxiPassenger passN = ((RockSampleState)nns).touchPassenger(pass.name());
@@ -878,7 +880,7 @@ public class RockSampleDomain implements DomainGenerator{
         TaxiLocation l0 = new TaxiLocation(0, 0,LOCATIONCLASS+0,YELLOW);
         TaxiLocation l1 = new TaxiLocation(0, 4,LOCATIONCLASS+1,RED);
         TaxiLocation l2 = new TaxiLocation(3, 0,LOCATIONCLASS+2,BLUE);
-        TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
+        //TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
 
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
@@ -886,7 +888,7 @@ public class RockSampleDomain implements DomainGenerator{
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
-        taxiLocations.add(l3);
+        //taxiLocations.add(l3);
 
         taxiPassengers.add(p1);
 
@@ -894,9 +896,10 @@ public class RockSampleDomain implements DomainGenerator{
 
         RockSampleMapWall v1 = new RockSampleMapWall(WALLCLASS+0,0, 5, 0,true);
         RockSampleMapWall v2 = new RockSampleMapWall(WALLCLASS+1,0, 5, 5,true);
-        RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
-        RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
-        RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
+
+        //RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
+        //RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
+        //RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
 
         RockSampleMapWall h1 = new RockSampleMapWall(WALLCLASS+5,0, 5, 0,false);
         RockSampleMapWall h2 = new RockSampleMapWall(WALLCLASS+6,0, 5, 5,false);
@@ -929,7 +932,7 @@ public class RockSampleDomain implements DomainGenerator{
         TaxiLocation l0 = new TaxiLocation(0, 0,LOCATIONCLASS+0,YELLOW);
         TaxiLocation l1 = new TaxiLocation(0, 4,LOCATIONCLASS+1,RED);
         TaxiLocation l2 = new TaxiLocation(3, 0,LOCATIONCLASS+2,BLUE);
-        TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
+        //TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
 
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
@@ -937,7 +940,7 @@ public class RockSampleDomain implements DomainGenerator{
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
-        taxiLocations.add(l3);
+        //taxiLocations.add(l3);
 
         taxiPassengers.add(p2);
         taxiPassengers.add(p1);
@@ -946,9 +949,9 @@ public class RockSampleDomain implements DomainGenerator{
 
         RockSampleMapWall v1 = new RockSampleMapWall(WALLCLASS+0,0, 5, 0,true);
         RockSampleMapWall v2 = new RockSampleMapWall(WALLCLASS+1,0, 5, 5,true);
-        RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
-        RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
-        RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
+        //RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
+        //RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
+        //RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
 
 
         RockSampleMapWall h1 = new RockSampleMapWall(WALLCLASS+5,0, 5, 0,false);
@@ -981,7 +984,7 @@ public class RockSampleDomain implements DomainGenerator{
         TaxiLocation l0 = new TaxiLocation(0, 0,LOCATIONCLASS+0,YELLOW);
         TaxiLocation l1 = new TaxiLocation(0, 4,LOCATIONCLASS+1,RED);
         TaxiLocation l2 = new TaxiLocation(3, 0,LOCATIONCLASS+2,BLUE);
-        TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
+        //TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
 
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
@@ -990,7 +993,7 @@ public class RockSampleDomain implements DomainGenerator{
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
-        taxiLocations.add(l3);
+        //taxiLocations.add(l3);
 
         TaxiLocation tempStartLocation = taxiLocations.get(rand.nextInt(taxiLocations.size()));
         TaxiLocation tempGoalLocation = taxiLocations.get(rand.nextInt(taxiLocations.size()));
@@ -1003,9 +1006,9 @@ public class RockSampleDomain implements DomainGenerator{
 
         RockSampleMapWall v1 = new RockSampleMapWall(WALLCLASS+0,0, 5, 0,true);
         RockSampleMapWall v2 = new RockSampleMapWall(WALLCLASS+1,0, 5, 5,true);
-        RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
-        RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
-        RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
+        //RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
+        //RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
+        //RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
 
         RockSampleMapWall h1 = new RockSampleMapWall(WALLCLASS+5,0, 5, 0,false);
         RockSampleMapWall h2 = new RockSampleMapWall(WALLCLASS+6,0, 5, 5,false);
@@ -1035,7 +1038,7 @@ public class RockSampleDomain implements DomainGenerator{
         TaxiLocation l0 = new TaxiLocation(0, 0,LOCATIONCLASS+0,YELLOW);
         TaxiLocation l1 = new TaxiLocation(0, 4,LOCATIONCLASS+1,RED);
         TaxiLocation l2 = new TaxiLocation(3, 0,LOCATIONCLASS+2,BLUE);
-        TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
+        //TaxiLocation l3 = new TaxiLocation(4, 4,LOCATIONCLASS+3,GREEN);
 
         List<TaxiLocation> taxiLocations = new ArrayList<TaxiLocation>();
         List<TaxiPassenger> taxiPassengers= new ArrayList<TaxiPassenger>();
@@ -1043,21 +1046,21 @@ public class RockSampleDomain implements DomainGenerator{
         taxiLocations.add(l0);
         taxiLocations.add(l1);
         taxiLocations.add(l2);
-        taxiLocations.add(l3);
+        //taxiLocations.add(l3);
 
 //        TaxiLocation tempStartLocation = taxiLocations.get(rand.nextInt(taxiLocations.size()));
 //        TaxiLocation tempGoalLocation = taxiLocations.get(rand.nextInt(taxiLocations.size()));
 
 
-        TaxiPassenger p1 = new TaxiPassenger(PASSENGERCLASS+0,l0.x, l0.y, l3.colour, l3.colour);
+        TaxiPassenger p1 = new TaxiPassenger(PASSENGERCLASS+0,l0.x, l0.y, l2.colour, l2.colour);
         taxiPassengers.add(p1);
 
 
         RockSampleMapWall v1 = new RockSampleMapWall(WALLCLASS+0,0, 5, 0,true);
         RockSampleMapWall v2 = new RockSampleMapWall(WALLCLASS+1,0, 5, 5,true);
-        RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
-        RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
-        RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
+        //RockSampleMapWall v3 = new RockSampleMapWall(WALLCLASS+2,0, 2, 1,true);
+        //RockSampleMapWall v4 = new RockSampleMapWall(WALLCLASS+3,3, 5, 2,true);
+        //RockSampleMapWall v5 = new RockSampleMapWall(WALLCLASS+4,0, 2, 3,true);
 
 
         RockSampleMapWall h1 = new RockSampleMapWall(WALLCLASS+5,0, 5, 0,false);
@@ -1092,7 +1095,11 @@ public class RockSampleDomain implements DomainGenerator{
 
 
 
-        TerminalFunction tf = new RockSampleTerminationFunction();
+        //TerminalFunction tf = new RockSampleTerminationFunction();
+       // TaxiLocation l0 = new TaxiLocation(0, 0,LOCATIONCLASS+0,YELLOW);
+        TaxiLocation l1 = new TaxiLocation(0, 4,LOCATIONCLASS+1,RED);
+
+        TerminalFunction tf = new TaxiToLocationTerminationFunction(l1);
         RewardFunction rf = new RockSampleRewardFunction(1,tf);
 
         RockSampleDomain tdGen = new RockSampleDomain(rf,tf);
@@ -1100,9 +1107,9 @@ public class RockSampleDomain implements DomainGenerator{
 
 
 //        tdGen.setDeterministicTransitionDynamics();
-        tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
+        //tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
-        tdGen.setFickleTaxi(true);
+        //tdGen.setFickleTaxi(true);
 
 
         OOSADomain td = tdGen.generateDomain();

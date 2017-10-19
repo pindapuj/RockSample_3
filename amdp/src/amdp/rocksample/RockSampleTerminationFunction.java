@@ -22,6 +22,7 @@ public class RockSampleTerminationFunction implements TerminalFunction {
 
     @Override
     public boolean isTerminal(State state) {
+        /* change to taxi is in "color depot" */
         List<ObjectInstance> passengerList = ((RockSampleState)state).objectsOfClass(RockSampleDomain.PASSENGERCLASS);
         List<ObjectInstance> locationList = ((RockSampleState)state).objectsOfClass(RockSampleDomain.LOCATIONCLASS);
         for(ObjectInstance p:passengerList){
