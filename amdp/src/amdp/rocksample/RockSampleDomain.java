@@ -906,9 +906,9 @@ public class RockSampleDomain implements DomainGenerator{
         walls.add(h2);
         walls.add(v1);
         walls.add(v2);
-        walls.add(v3);
-        walls.add(v4);
-        walls.add(v5);
+        //walls.add(v3);
+        //walls.add(v4);
+        //walls.add(v5);
 
 
         State s = new RockSampleState(walls,taxiPassengers,taxiLocations, roverAgent);
@@ -959,9 +959,9 @@ public class RockSampleDomain implements DomainGenerator{
         walls.add(h2);
         walls.add(v1);
         walls.add(v2);
-        walls.add(v3);
-        walls.add(v4);
-        walls.add(v5);
+        //walls.add(v3);
+        //walls.add(v4);
+        //walls.add(v5);
 
 
         State s = new RockSampleState(walls,taxiPassengers,taxiLocations, roverAgent);
@@ -1015,9 +1015,9 @@ public class RockSampleDomain implements DomainGenerator{
         walls.add(h2);
         walls.add(v1);
         walls.add(v2);
-        walls.add(v3);
-        walls.add(v4);
-        walls.add(v5);
+        //walls.add(v3);
+        //walls.add(v4);
+        //walls.add(v5);
 
 
         State s = new RockSampleState(walls,taxiPassengers,taxiLocations, roverAgent);
@@ -1068,9 +1068,9 @@ public class RockSampleDomain implements DomainGenerator{
         walls.add(h2);
         walls.add(v1);
         walls.add(v2);
-        walls.add(v3);
-        walls.add(v4);
-        walls.add(v5);
+        //walls.add(v3);
+        //walls.add(v4);
+        //walls.add(v5);
 
 
         State s = new RockSampleState(walls,taxiPassengers,taxiLocations, roverAgent);
