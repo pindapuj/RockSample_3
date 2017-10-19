@@ -1,10 +1,9 @@
 package amdp.taxiamdpdomains.taxiamdp;
 
 import amdp.amdpframework.*;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
-import amdp.taxi.TaxiVisualizer;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
 import amdp.taxiamdpdomains.taxiamdplevel1.TaxiL1Domain;
 import amdp.taxiamdpdomains.taxiamdplevel1.TaxiL1TerminalFunction;
 import amdp.taxiamdpdomains.taxiamdplevel1.taxil1state.L1StateMapper;
@@ -16,7 +15,6 @@ import amdp.taxiamdpdomains.testingtools.GreedyReplan;
 import amdp.taxiamdpdomains.testingtools.MutableGlobalInteger;
 import burlap.behavior.policy.Policy;
 import burlap.behavior.singleagent.Episode;
-import burlap.behavior.singleagent.auxiliary.EpisodeSequenceVisualizer;
 import burlap.behavior.valuefunction.ConstantValueFunction;
 import burlap.behavior.valuefunction.QProvider;
 import burlap.debugtools.DPrint;
@@ -31,7 +29,6 @@ import burlap.mdp.singleagent.model.FactoredModel;
 import burlap.mdp.singleagent.model.RewardFunction;
 import burlap.mdp.singleagent.oo.OOSADomain;
 import burlap.statehashing.simple.SimpleHashableStateFactory;
-import burlap.visualizer.Visualizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,16 +84,15 @@ public class TaxiAMDPDriver {
             }
         }
 
-        TerminalFunction tf = new TaxiTerminationFunction();
-        RewardFunction rf = new TaxiRewardFunction(1,tf);
+        TerminalFunction tf = new RockSampleTerminationFunction();
+        RewardFunction rf = new RockSampleRewardFunction(1,tf);
 
-        TaxiDomain tdGen = new TaxiDomain(rf,tf);
+        RockSampleDomain tdGen = new RockSampleDomain(rf,tf);
 
 
 
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
 
 
         OOSADomain td = tdGen.generateDomain();
@@ -104,23 +100,23 @@ public class TaxiAMDPDriver {
         OOSADomain tdEnv = tdGen.generateDomain();
 
 
-        State startState;// = TaxiDomain.getComplexState(false);
+        State startState;// = RockSampleDomain.getComplexState(false);
 
         if(randomStart){
             if(singlePassenger){
-                startState = TaxiDomain.getRandomClassicState(rand, td, false);
+                startState = RockSampleDomain.getRandomClassicState(rand, td);
             }
             else{
-                startState = TaxiDomain.getComplexState(false);
+                startState = RockSampleDomain.getComplexState();
             }
 
         }
         else{
             if(singlePassenger) {
-                startState = TaxiDomain.getClassicState(td, false);
+                startState = RockSampleDomain.getClassicState(td);
             }
             else{
-                startState = TaxiDomain.getComplexState(false);
+                startState = RockSampleDomain.getComplexState();
             }
         }
 
@@ -151,12 +147,12 @@ public class TaxiAMDPDriver {
         OOSADomain tdL2 = tdL2Gen.generateDomain();
 
 
-        ActionType east = td.getAction(TaxiDomain.ACTION_EAST);
-        ActionType west = td.getAction(TaxiDomain.ACTION_WEST);
-        ActionType south = td.getAction(TaxiDomain.ACTION_SOUTH);
-        ActionType north = td.getAction(TaxiDomain.ACTION_NORTH);
-        ActionType pickup = td.getAction(TaxiDomain.ACTION_PICKUP);
-        ActionType dropoff = td.getAction(TaxiDomain.ACTION_DROPOFF);
+        ActionType east = td.getAction(RockSampleDomain.ACTION_EAST);
+        ActionType west = td.getAction(RockSampleDomain.ACTION_WEST);
+        ActionType south = td.getAction(RockSampleDomain.ACTION_SOUTH);
+        ActionType north = td.getAction(RockSampleDomain.ACTION_NORTH);
+        ActionType pickup = td.getAction(RockSampleDomain.ACTION_PICKUP);
+        ActionType dropoff = td.getAction(RockSampleDomain.ACTION_DROPOFF);
 
 
         ActionType navigate = tdL1.getAction(TaxiL1Domain.ACTION_NAVIGATE);
@@ -218,7 +214,7 @@ public class TaxiAMDPDriver {
 
         Episode e = agent.actUntilTermination(envN,maxTrajectoryLength);
 
-//        Visualizer v = TaxiVisualizer.getVisualizer(5, 5);
+//        Visualizer v = RockSampleVisualizer.getVisualizer(5, 5);
 //        List<Episode> eaList = new ArrayList<Episode>();
 //        eaList.add(e);
 //        new EpisodeSequenceVisualizer(v, td, eaList);

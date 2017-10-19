@@ -2,10 +2,10 @@ package amdp.maxq.taximaxq;
 
 
 import amdp.maxq.framework.PrimitiveTaskNode;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.state.TaxiLocation;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.state.RockSampleState;
+import amdp.rocksample.state.TaxiLocation;
+import amdp.rocksample.state.TaxiPassenger;
 import burlap.mdp.core.action.ActionType;
 import burlap.mdp.core.oo.state.ObjectInstance;
 import burlap.mdp.core.state.State;
@@ -53,8 +53,8 @@ public class DropTaskNode extends PrimitiveTaskNode {
 
         private boolean legalDrop(){
             boolean flag = false;
-            List<ObjectInstance> passengers = ((TaxiState)state).objectsOfClass(TaxiDomain.PASSENGERCLASS);
-            List<ObjectInstance> locationList = ((TaxiState)state).objectsOfClass(TaxiDomain.LOCATIONCLASS);
+            List<ObjectInstance> passengers = ((RockSampleState)state).objectsOfClass(RockSampleDomain.PASSENGERCLASS);
+            List<ObjectInstance> locationList = ((RockSampleState)state).objectsOfClass(RockSampleDomain.LOCATIONCLASS);
             for(ObjectInstance p : passengers){
                 if(((TaxiPassenger)p).inTaxi){
                     String goalLocation = ((TaxiPassenger)p).goalLocation;

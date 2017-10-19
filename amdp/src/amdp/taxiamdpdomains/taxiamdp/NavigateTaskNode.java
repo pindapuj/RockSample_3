@@ -4,7 +4,7 @@ import amdp.amdpframework.GroundedPropSC;
 import amdp.amdpframework.GroundedTask;
 import amdp.amdpframework.NonPrimitiveTaskNode;
 import amdp.amdpframework.TaskNode;
-import amdp.taxi.TaxiDomain;
+import amdp.rocksample.RockSampleDomain;
 import amdp.taxiamdpdomains.taxiamdplevel1.TaxiL1Domain;
 import burlap.mdp.auxiliary.common.GoalConditionTF;
 import burlap.mdp.auxiliary.stateconditiontest.StateConditionTest;
@@ -37,13 +37,13 @@ public class NavigateTaskNode extends NonPrimitiveTaskNode{
 //        this.l0Domain = taxiL0Domain;
         this.oosaDomain.clearActionTypes();
         this.oosaDomain.addActionTypes(
-                new UniversalActionType(TaxiDomain.ACTION_NORTH),
-                new UniversalActionType(TaxiDomain.ACTION_SOUTH),
-                new UniversalActionType(TaxiDomain.ACTION_EAST),
-                new UniversalActionType(TaxiDomain.ACTION_WEST)
-//                new UniversalActionType(TaxiDomain.ACTION_DROPOFF)
+                new UniversalActionType(RockSampleDomain.ACTION_NORTH),
+                new UniversalActionType(RockSampleDomain.ACTION_SOUTH),
+                new UniversalActionType(RockSampleDomain.ACTION_EAST),
+                new UniversalActionType(RockSampleDomain.ACTION_WEST)
+//                new UniversalActionType(RockSampleDomain.ACTION_DROPOFF)
 //                new UniversalActionType(ACTION_FILLUP),
-//                new UniversalActionType(TaxiDomain.ACTION_PICKUP)
+//                new UniversalActionType(RockSampleDomain.ACTION_PICKUP)
         );
         this.childTaskNodes = children;
     }
@@ -62,14 +62,14 @@ public class NavigateTaskNode extends NonPrimitiveTaskNode{
     @Override
     public boolean terminal(State s, Action action) {
         String location = ((TaxiL1Domain.NavigateType.NavigateAction)action).location;
-        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(TaxiDomain.TAXIATLOCATIONPF), new String[]{location}));
+        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(RockSampleDomain.TAXIATLOCATIONPF), new String[]{location}));
         return new GoalConditionTF(sc).isTerminal(s);
     }
 
     @Override
     public RewardFunction rewardFunction(Action action) {
         String location = ((TaxiL1Domain.NavigateType.NavigateAction)action).location;
-        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(TaxiDomain.TAXIATLOCATIONPF), new String[]{location}));
+        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(RockSampleDomain.TAXIATLOCATIONPF), new String[]{location}));
         return new GoalBasedRF(sc);
     }
 

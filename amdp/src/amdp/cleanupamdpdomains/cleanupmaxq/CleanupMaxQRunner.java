@@ -162,7 +162,7 @@ public class CleanupMaxQRunner {
         String str = "-------- MAXQ Test! ----------";
         DPrint.cl(debugCode,str);
 //
-//            State state = TaxiDomain.getClassicState(d, false);
+//            State state = RockSampleDomain.getClassicState(d, false);
 
         int numberOfTests = 1;
         int numberOfLearningEpisodes = 100;
@@ -210,7 +210,7 @@ public class CleanupMaxQRunner {
             DPrint.cl(debugCode,str);
             str = "-------------------------------------------------------------";
             DPrint.cl(debugCode,str);
-            State sNew;// = TaxiDomain.getRandomClassicState(rand, d, false);
+            State sNew;// = RockSampleDomain.getRandomClassicState(rand, d, false);
 
             if(rooms == 1){
                 sNew = CleanupDomain.getClassicState(true);
@@ -227,7 +227,7 @@ public class CleanupMaxQRunner {
             }
 
 
-//            State sNew = TaxiDomain.getComplexState(false);
+//            State sNew = RockSampleDomain.getComplexState(false);
             SimulatedEnvironment envN = new SimulatedEnvironment(dgen.generateDomain(), sNew);
 
             Episode ea = maxqLearningAgent.runLearningEpisode(envN, 5000);

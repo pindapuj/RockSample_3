@@ -1,9 +1,8 @@
 package amdp.taxiamdpdomains.taxiamdplevel2;
 
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
-import amdp.taxi.state.TaxiLocation;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
 import amdp.taxiamdpdomains.taxiamdplevel1.taxil1state.L1StateMapper;
 import amdp.taxiamdpdomains.taxiamdplevel2.taxil2state.*;
 import burlap.behavior.policy.Policy;
@@ -375,10 +374,10 @@ public class TaxiL2Domain implements DomainGenerator {
 
 
 
-        TerminalFunction tf = new TaxiTerminationFunction();
-        RewardFunction rf = new TaxiRewardFunction(1,tf);
+        TerminalFunction tf = new RockSampleTerminationFunction();
+        RewardFunction rf = new RockSampleRewardFunction(1,tf);
 
-        TaxiDomain tdGen = new TaxiDomain(rf,tf);
+        RockSampleDomain tdGen = new RockSampleDomain(rf,tf);
 
 
 
@@ -386,15 +385,14 @@ public class TaxiL2Domain implements DomainGenerator {
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
 
 
         OOSADomain td = tdGen.generateDomain();
 
 
-        State startState = TaxiDomain.getRandomClassicState(rand, td, false);
+        State startState = RockSampleDomain.getRandomClassicState(rand, td);
 
-//        State startState = TaxiDomain.getClassicState(td, false);
+//        State startState = RockSampleDomain.getClassicState(td, false);
 
         L1StateMapper testMapper = new L1StateMapper();
 

@@ -1,18 +1,11 @@
 package amdp.maxq.taximaxq;
 
 import amdp.maxq.framework.PrimitiveTaskNode;
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.state.TaxiAgent;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
 import burlap.mdp.core.action.ActionType;
-import burlap.mdp.core.oo.state.ObjectInstance;
 import burlap.mdp.core.state.State;
 import burlap.statehashing.HashableState;
 import burlap.statehashing.HashableStateFactory;
 import burlap.statehashing.WrappedHashableState;
-
-import java.util.List;
 
 /**
  * Created by ngopalan on 5/6/16.

@@ -4,8 +4,7 @@ import amdp.amdpframework.GroundedPropSC;
 import amdp.amdpframework.GroundedTask;
 import amdp.amdpframework.NonPrimitiveTaskNode;
 import amdp.amdpframework.TaskNode;
-import amdp.taxi.TaxiDomain;
-import amdp.taxiamdpdomains.taxiamdplevel1.TaxiL1Domain;
+import amdp.rocksample.RockSampleDomain;
 import burlap.mdp.auxiliary.common.GoalConditionTF;
 import burlap.mdp.auxiliary.stateconditiontest.StateConditionTest;
 import burlap.mdp.core.action.Action;
@@ -42,7 +41,7 @@ public class PickupL1TaskNode extends NonPrimitiveTaskNode{
 //                new UniversalActionType(ACTION_WEST),
 //                new UniversalActionType(ACTION_DROPOFF),
 //                new UniversalActionType(ACTION_FILLUP),
-                new UniversalActionType(TaxiDomain.ACTION_PICKUP));
+                new UniversalActionType(RockSampleDomain.ACTION_PICKUP));
 
         this.childTaskNodes = children;
     }
@@ -56,13 +55,13 @@ public class PickupL1TaskNode extends NonPrimitiveTaskNode{
 
     @Override
     public boolean terminal(State s, Action action) {
-        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(TaxiDomain.PASSENGERPICKUPPF), new String[]{}));
+        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(RockSampleDomain.PASSENGERPICKUPPF), new String[]{}));
         return new GoalConditionTF(sc).isTerminal(s);
     }
 
     @Override
     public RewardFunction rewardFunction(Action action) {
-        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(TaxiDomain.PASSENGERPICKUPPF), new String[]{}));
+        StateConditionTest sc =  new GroundedPropSC(new GroundedProp(oosaDomain.propFunction(RockSampleDomain.PASSENGERPICKUPPF), new String[]{}));
         return new GoalBasedRF(sc);
     }
 

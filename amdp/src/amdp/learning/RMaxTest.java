@@ -1,30 +1,18 @@
 package amdp.learning;
 
-import amdp.taxi.TaxiDomain;
-import amdp.taxi.TaxiRewardFunction;
-import amdp.taxi.TaxiTerminationFunction;
-import amdp.taxi.TaxiVisualizer;
+import amdp.rocksample.RockSampleDomain;
+import amdp.rocksample.RockSampleRewardFunction;
+import amdp.rocksample.RockSampleTerminationFunction;
+import amdp.rocksample.RockSampleVisualizer;
 import burlap.behavior.singleagent.Episode;
-import burlap.behavior.singleagent.auxiliary.StateEnumerator;
 import burlap.behavior.singleagent.learning.modellearning.rmax.PotentialShapedRMax;
 import burlap.debugtools.RandomFactory;
-import burlap.domain.singleagent.gridworld.GridWorldDomain;
-import burlap.domain.singleagent.gridworld.GridWorldRewardFunction;
-import burlap.domain.singleagent.gridworld.GridWorldTerminalFunction;
-import burlap.domain.singleagent.gridworld.GridWorldVisualizer;
-import burlap.domain.singleagent.gridworld.state.GridAgent;
-import burlap.domain.singleagent.gridworld.state.GridWorldState;
-import burlap.mdp.core.action.Action;
-import burlap.mdp.core.action.ActionType;
 import burlap.mdp.singleagent.SADomain;
 import burlap.mdp.core.state.*;
 import burlap.mdp.singleagent.environment.Environment;
 import burlap.mdp.singleagent.environment.SimulatedEnvironment;
-import burlap.shell.visual.VisualExplorer;
 import burlap.statehashing.simple.SimpleHashableStateFactory;
 import burlap.visualizer.Visualizer;
-
-import java.util.List;
 
 /**
  * Created by ngopalan on 2/23/17.
@@ -43,9 +31,9 @@ public class RMaxTest {
 //        gw.setTf(tf);
 
         RandomFactory randomFactory = new RandomFactory();
-        TaxiTerminationFunction ttf = new TaxiTerminationFunction();
-        TaxiRewardFunction trf = new TaxiRewardFunction(1,ttf);
-        TaxiDomain tdGen = new TaxiDomain(trf,ttf);
+        RockSampleTerminationFunction ttf = new RockSampleTerminationFunction();
+        RockSampleRewardFunction trf = new RockSampleRewardFunction(1,ttf);
+        RockSampleDomain tdGen = new RockSampleDomain(trf,ttf);
 //        taxiDomain.fickleTaxi = true;
 
 
@@ -53,7 +41,6 @@ public class RMaxTest {
         tdGen.setTransitionDynamicsLikeFickleTaxiProlem();
 //        tdGen.setDeterministicTransitionDynamics();
         tdGen.setFickleTaxi(true);
-        tdGen.setIncludeFuel(false);
 
         SADomain domain = tdGen.generateDomain();
 //        SADomain domain = gw.generateDomain(); //generate the grid world domain
@@ -61,11 +48,11 @@ public class RMaxTest {
         //setup initial state
 //    State s = new GridWorldState(new GridAgent(0, 0), new GridLocation(10, 10, "loc0"));
 //        State s = new GridWorldState(new GridAgent(0, 0));
-        State s = TaxiDomain.getRandomClassicState(randomFactory.getMapped(0), domain, false);
+        State s = RockSampleDomain.getRandomClassicState(randomFactory.getMapped(0), domain);
 
         //create visualizer and explorer
 //        Visualizer v = GridWorldVisualizer.getVisualizer(gw.getMap());
-        Visualizer v = TaxiVisualizer.getVisualizer(5, 5);
+        Visualizer v = RockSampleVisualizer.getVisualizer(5, 5);
 //    SampleModel model = new
         Environment env = new SimulatedEnvironment(domain, s);
 //        VisualExplorer exp = new VisualExplorer(domain, env, v);

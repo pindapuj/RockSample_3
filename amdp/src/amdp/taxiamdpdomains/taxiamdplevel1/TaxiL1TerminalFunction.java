@@ -25,7 +25,7 @@ public class TaxiL1TerminalFunction implements TerminalFunction {
             String goalLocation = p.goalLocation;
             for(TaxiL1Location l :locationList){
 //                System.out.println("goal: " + goalLocation);
-//                System.out.println("location attribute: " + l.getStringValForAttribute(TaxiDomain.LOCATIONATT));
+//                System.out.println("location attribute: " + l.getStringValForAttribute(RockSampleDomain.LOCATIONATT));
                 if(goalLocation.equals(l.colour)){
                     if(p.currentLocation.equals(l.colour) && p.pickUpOnce){
                         break;

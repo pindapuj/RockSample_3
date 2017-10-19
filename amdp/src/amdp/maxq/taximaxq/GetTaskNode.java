@@ -3,10 +3,9 @@ package amdp.maxq.taximaxq;
 import amdp.maxq.framework.GroundedTask;
 import amdp.maxq.framework.NonPrimitiveTaskNode;
 import amdp.maxq.framework.TaskNode;
-import amdp.taxi.state.TaxiAgent;
-import amdp.taxi.state.TaxiPassenger;
-import amdp.taxi.state.TaxiState;
-import burlap.behavior.valuefunction.QValue;
+import amdp.rocksample.state.RockSampleState;
+import amdp.rocksample.state.RoverAgent;
+import amdp.rocksample.state.TaxiPassenger;
 import burlap.mdp.core.action.Action;
 import burlap.mdp.core.action.SimpleAction;
 import burlap.mdp.core.state.State;
@@ -79,12 +78,12 @@ public class GetTaskNode extends NonPrimitiveTaskNode {
 
     @Override
     public boolean terminal(State s, Action action) {
-        // check if the passenger in taxi and taxi with a passenger
+        // check if the passenger in rocksample and rocksample with a passenger
         //[0] is the name of the simple action or the parent task!
         String passengerName = action.actionName().split(":")[1] ;//((String[])parameters)[0];
-        TaxiPassenger passenger = (TaxiPassenger)((TaxiState)s).object(passengerName);
+        TaxiPassenger passenger = (TaxiPassenger)((RockSampleState)s).object(passengerName);
         boolean inTaxi = passenger.inTaxi;
-        TaxiAgent taxi = ((TaxiState)s).taxi;
+        RoverAgent taxi = ((RockSampleState)s).taxi;
         boolean taxiOccupied = taxi.taxiOccupied;
         return inTaxi&&taxiOccupied;
     }
@@ -92,7 +91,7 @@ public class GetTaskNode extends NonPrimitiveTaskNode {
     @Override
     public List<GroundedTask> getApplicableGroundedTasks(State s) {
         List<GroundedTask> applicableGroundedTasks = new ArrayList<GroundedTask>();
-        TaxiAgent taxi = ((TaxiState)s).taxi;
+        RoverAgent taxi = ((RockSampleState)s).taxi;
         boolean taxiOccupied = taxi.taxiOccupied;
         if(!taxiOccupied){
             return this.groundedTasks;
@@ -114,7 +113,7 @@ public class GetTaskNode extends NonPrimitiveTaskNode {
         private int createHash(){
             // check source and return state!
             int hashC =0;
-            for(TaxiPassenger p:((TaxiState)state).passengers){
+            for(TaxiPassenger p:((RockSampleState)state).passengers){
                 hashC = 31 * hashC + p.originalSourceLocation.hashCode();
             }
             return hashC;
@@ -153,10 +152,10 @@ public class GetTaskNode extends NonPrimitiveTaskNode {
         }
 
         private int createHash(){
-            int x = ((TaxiState)state).taxi.x;
-            int y = ((TaxiState)state).taxi.y;
+            int x = ((RockSampleState)state).taxi.x;
+            int y = ((RockSampleState)state).taxi.y;
             int hashC =0;
-            for(TaxiPassenger p:((TaxiState)state).passengers){
+            for(TaxiPassenger p:((RockSampleState)state).passengers){
                 hashC = 31 * hashC + p.originalSourceLocation.hashCode();
             }
             return 10*x + y + hashC;
